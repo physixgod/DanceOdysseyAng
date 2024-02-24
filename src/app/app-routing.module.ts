@@ -1,7 +1,30 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
+import { AllTemplateFrontComponent} from './FrontOffice/all-template-front/all-template-front.component';
+import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
+import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
+import { HomeComponent } from './FrontOffice/home/home.component';
 
-const routes: Routes = [];
+
+const routes: Routes = [
+{ path:"",
+  component: AllTemplateFrontComponent,
+  children:[
+    {path:'homepage', component: HomeComponent },
+  ]
+},
+{
+  path:"admin",
+  component: AllTemplateBackComponent,
+  children: [
+    { path: 'list-competition', component: ListCompetitionComponent },
+    { path: 'add-competition', component: AddCompetitionComponent },
+    { path: 'list-event', component: AddCompetitionComponent },
+    
+  ]
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
