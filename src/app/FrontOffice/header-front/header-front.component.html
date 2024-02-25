@@ -1,42 +1,30 @@
-<header class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-2">
-                <div class="header__logo">
-                    <a >
-                        <img src="/assets/Front Office/img/purpledanceimage.png" alt="" width="110" height="110">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-10 col-md-10">
-                <div class="header__nav">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li  class="active"><a href="" [routerLink]="['/homepage']">Home</a></li>
-                            <li><a href="./about.html">About</a></li>
-                            <li><a href="./discography.html">Competitions</a></li>
-                            <li><a href="./tours.html">Events</a></li>
-                            <li><a href="./videos.html">Products</a></li>
-                            <li><a href="#">Community</a>
-                                <ul class="dropdown">
-                                    <li><a href="./about.html">About</a></li>
-                                    <li><a href="./blog.html">Blog</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                    <div class="header__right__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-    </div>
-</header>
+<header class="site-navbar py-4" role="banner">
 
+    <div class="container">
+      <div class="d-flex align-items-center">
+        <div class="site-logo">
+          <a href="index.html">
+            <img src="/assets/images/logo.png" alt="Logo" width="150" height="150">
+
+          </a>
+        </div>
+        <div class="ml-auto">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li class="active"><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
+              <li><a href="matches.html" class="nav-link">About</a></li>
+              <li><a href="players.html" class="nav-link">Competitons</a></li>
+              <li><a href="blog.html" class="nav-link">Events</a></li>
+              <li><a href="contact.html" class="nav-link">Products</a></li>
+              <li><a href="contact.html" class="nav-link">Community</a></li>
+              <li><a href="contact.html" class="nav-link">Sign Out</a></li>
+            </ul>
+          </nav>
+
+          <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
+              class="icon-menu h3 text-white"></span></a>
+        </div>
+      </div>
+    </div>
+
+  </header>

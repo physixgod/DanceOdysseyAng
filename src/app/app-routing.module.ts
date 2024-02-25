@@ -5,6 +5,7 @@ import { AllTemplateFrontComponent} from './FrontOffice/all-template-front/all-t
 import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { HomeComponent } from './FrontOffice/home/home.component';
+import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   component: AllTemplateFrontComponent,
   children:[
     {path:'homepage', component: HomeComponent },
+    {path:'competitions', component:ListCompetitionsComponent},
   ]
 },
 {
@@ -21,6 +23,7 @@ const routes: Routes = [
     { path: 'list-competition', component: ListCompetitionComponent },
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
+
     
   ]
 }

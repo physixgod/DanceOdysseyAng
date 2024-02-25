@@ -5,7 +5,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row mb-5">
                         <div class="col-md-6 col-lg-4" *ngFor="let competition of competitions">
-                            <div class="card text-center mb-3">
+                            <div class="card text-center mb-3" >
                                 <div class="card-body">
                                     <h5 class="card-title">{{competition.competitionName}}</h5>
                                     <p class="card-text"> Location : {{ competition.location}}</p>
@@ -14,9 +14,10 @@
                                     <p class="card-text"> End Date  : {{ competition.endDate}}</p>
                                     <p class="card-text"> Max Participants : {{ competition.maxParticipants}}</p>
                                     <p class="card-text"> Prize : {{ competition.prize}}</p>
+                        
                                     <a [routerLink]="['/admin/add-competition']" class="btn btn-primary spaced-button">Update</a>
-                                    <a [routerLink]="['']" class="btn btn-primary spaced-button">Set Juries</a>
-                                    <a [routerLink]="['']" class="btn btn-primary">Close</a>
+                                    <a [routerLink]="['']"  class="btn btn-primary spaced-button">Set Juries</a>
+                                    <a [routerLink]="['/admin/list-competition']"(click)="Close(competition.competitionID)" class="btn btn-primary">Close</a>
                                 </div>
                             </div>
                         </div>

@@ -19,4 +19,7 @@ export class CompetitionService {
   addNewCompetition(c : Competition):Observable<Competition>{
     return this.http.post<Competition>(this.baseURL+'AddCompetitionorUpdate' , c);
   }
+  CloseCompetition(id : number):Observable<Competition>{
+    return this.http.put<Competition>(`${this.baseURL}UpdateCompetitionStatus/${id}`, id)
+  }
 }

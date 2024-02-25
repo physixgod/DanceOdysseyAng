@@ -32,5 +32,13 @@ export class ListCompetitionComponent {
       }
     )
   }
+  Close(id:number){
+    this.competitionService.CloseCompetition(id).subscribe((data) =>{
+      console.log("DATA : " , data);
+      alert("Competition Closed Successfully :) ");
+      window.location.reload();
+    });
 
+
+}
 }
