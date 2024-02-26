@@ -17,6 +17,7 @@ export class AddCompetitionComponent {
     location: '',
     rating: 0,
     prize: '',
+    description:'',
     maxParticipants: 0,
     status: '',
     competitionID: 0,

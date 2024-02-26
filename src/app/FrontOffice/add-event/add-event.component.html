@@ -1,0 +1,48 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <h1 class="text-white">Create Event </h1>
+          <p>Step into the spotlight! Create your dance event, and let the rhythm speak for itself </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 " >
+          <form (submit)="addEvent()">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Event Name" [(ngModel)]="event.eventName" name="eventName">
+            </div>
+            <div class="form-group">
+              <input type="date" class="form-control" placeholder="Start Date" [(ngModel)]="event.startDate" name="startDate">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Location" [(ngModel)]="event.location"  name="location">
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Max Participants" [(ngModel)]="event.maxParticipants" name="maxParticipants">
+            </div>
+            <div class="form-group">
+              <textarea name="" class="form-control" id="" cols="30" rows="10" placeholder="Event description"
+                [(ngModel)]="event.description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary py-3 px-5" value="Create Event">
+            </div>
+          </form>
+  
+        </div>
+        <div class="col-lg-4 ml-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .col-lg-7 {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  </style>

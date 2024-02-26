@@ -8,6 +8,7 @@ import { CompetitionService } from 'src/app/services/competition.service';
   styleUrls: ['./list-competition.component.css']
 })
 export class ListCompetitionComponent {
+  searchName: string = '';
 
   competitions ! : Competition[];
   constructor(private competitionService : CompetitionService){
@@ -38,7 +39,29 @@ export class ListCompetitionComponent {
       alert("Competition Closed Successfully :) ");
       window.location.reload();
     });
-
-
+  
+}
+CompetitionByName(name:string) {
+      
+  this.competitionService.SearchCompetitionByName(name).subscribe(
+    (data: Competition[]) => {
+      console.log(data);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+onSearch(): void {
+  console.log('Search Name:', this.searchName);
+  // ... rest of your code
+  this.competitionService.SearchCompetitionByName(this.searchName).subscribe(
+    (data: Competition[]) => {
+      this.competitions = data; // Update competitions array with the search results
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 }
 }

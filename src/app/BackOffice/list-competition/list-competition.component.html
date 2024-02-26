@@ -3,6 +3,10 @@
         <div class="layout-page">
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
+                    <form class="d-flex mb-3" (ngSubmit)="onSearch()">
+                        <input class="form-control me-2 search-bar" type="search" placeholder="Competition Name" aria-label="Search" [(ngModel)]="searchName"name="searchName" />
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                      </form>
                     <div class="row mb-5">
                         <div class="col-md-6 col-lg-4" *ngFor="let competition of competitions">
                             <div class="card text-center mb-3" >
@@ -32,4 +36,9 @@
     .spaced-button {
         margin-right: 5px; /* Adjust the value based on the space you want */
     }
+    .search-bar {
+        width: 200px; /* Adjust the width as needed */
+        margin-left: 70%;
+    }
+
 </style>

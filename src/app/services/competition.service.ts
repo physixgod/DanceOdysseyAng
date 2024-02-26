@@ -8,13 +8,12 @@ import { Competition } from '../models/competition';
 })
 export class CompetitionService {
 
-  private baseURL = "http://localhost:8080/competition/"
+  private baseURL = "http://localhost:8086/competition/"
 
   constructor(private http : HttpClient) { }
 
   getAllCompetitions():Observable<Competition[]>{
     return this.http.get<Competition[]>(this.baseURL+'ShowCompetitions')
-
   }
   addNewCompetition(c : Competition):Observable<Competition>{
     return this.http.post<Competition>(this.baseURL+'AddCompetitionorUpdate' , c);
@@ -22,4 +21,8 @@ export class CompetitionService {
   CloseCompetition(id : number):Observable<Competition>{
     return this.http.put<Competition>(`${this.baseURL}UpdateCompetitionStatus/${id}`, id)
   }
+  SearchCompetitionByName(name: string): Observable<Competition[]> {
+    return this.http.get<Competition[]>(`${this.baseURL}SearchCompetitionByName/${name}`);
+}
+
 }

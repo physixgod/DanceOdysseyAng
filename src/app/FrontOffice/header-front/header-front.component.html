@@ -12,9 +12,15 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
               <li class="active"><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
-              <li><a href="matches.html" class="nav-link">About</a></li>
-              <li><a href="players.html" class="nav-link">Competitons</a></li>
-              <li><a href="blog.html" class="nav-link">Events</a></li>
+              <li><a  class="nav-link">About</a></li>
+              <li><a [routerLink]="['/competitions']">Competitons</a></li>
+              <li class="has-children">
+                <a href="javascript:void(0)" class="nav-link">Events</a>
+                <ul class="dropdown">
+                  <li><a [routerLink]="['/add-event']">Create Event</a></li>
+                  <li><a [routerLink]="['/events-list']">Events List</a></li>
+                </ul>
+              </li>
               <li><a href="contact.html" class="nav-link">Products</a></li>
               <li><a href="contact.html" class="nav-link">Community</a></li>
               <li><a href="contact.html" class="nav-link">Sign Out</a></li>
@@ -26,5 +32,21 @@
         </div>
       </div>
     </div>
+    <style>
+      .site-menu .dropdown li a {
+        color: white;
+        background-color: rgba(12, 24, 97, 0.8);
+        padding: 6px 10px; /* Adjust the padding for a smaller size */
+        display: block;
+        transition: background-color 0.3s ease;
+        border: 0px solid rgba(255, 255, 255, 0.2); /* Border with transparent white color */
+  
+      }
+    
+      .site-menu .dropdown li a:hover {
+        background-color: #EA0167;
+      }
+    </style>
+    
 
   </header>

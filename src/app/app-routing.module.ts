@@ -6,6 +6,7 @@ import { ListCompetitionComponent } from './BackOffice/list-competition/list-com
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   children:[
     {path:'homepage', component: HomeComponent },
     {path:'competitions', component:ListCompetitionsComponent},
+    {path:'addevent', component:AddEventComponent}
   ]
 },
 {

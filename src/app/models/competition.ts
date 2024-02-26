@@ -6,6 +6,7 @@ export class Competition {
     endDate!: Date;
     location!: string;
     rating!: number;
+    description!:string;
     prize!: string;
     maxParticipants!: number;
     status!: string;

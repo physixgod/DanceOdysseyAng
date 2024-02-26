@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { FormsModule } from '@angular/forms';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,13 @@ import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-
     ListCompetitionComponent,
     AddCompetitionComponent,
     ListCompetitionsComponent,
+    AddEventComponent,
   ],
   imports: [
-    FormsModule, // Add this line to import FormsModule
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],
