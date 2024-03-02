@@ -7,6 +7,11 @@ import { AddCompetitionComponent } from './BackOffice/add-competition/add-compet
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
+import { TestComponent } from './test/test.component';
+import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
+import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
+import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
 
 
 const routes: Routes = [
@@ -15,8 +20,12 @@ const routes: Routes = [
   children:[
     {path:'homepage', component: HomeComponent },
     {path:'competitions', component:ListCompetitionsComponent},
-    {path:'addevent', component:AddEventComponent}
+    {path:'addevent', component:AddEventComponent},
+    {path:'listevents', component:EventsListComponent},
+    {path:'competition/:id',component:ReadmoreCompetitionsComponent}
   ]
+},{
+  path:'test',component:TestComponent
 },
 {
   path:"admin",
@@ -25,6 +34,8 @@ const routes: Routes = [
     { path: 'list-competition', component: ListCompetitionComponent },
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
+    { path: 'archivecometitions',component:ArchiveCompetitionsComponent},
+    { path: 'leaderboard/:id', component: CompetitionRanksComponent }
 
     
   ]

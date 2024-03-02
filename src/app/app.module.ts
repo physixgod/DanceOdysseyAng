@@ -17,6 +17,11 @@ import { AddCompetitionComponent } from './BackOffice/add-competition/add-compet
 import { FormsModule } from '@angular/forms';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
+import { TestComponent } from './test/test.component';
+import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
+import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
+import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,11 @@ import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
     AddCompetitionComponent,
     ListCompetitionsComponent,
     AddEventComponent,
+    EventsListComponent,
+    TestComponent,
+    ArchiveCompetitionsComponent,
+    CompetitionRanksComponent,
+    ReadmoreCompetitionsComponent,
   ],
   imports: [
     BrowserModule,

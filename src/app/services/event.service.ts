@@ -13,6 +13,10 @@ export class EventService{
     addEvent(e:Event):Observable<Event[]>{
         return this.http.post<Event[]>(this.baseURL+"AddEvent",e)
       }
+    getEvents():Observable<Event[]>{
+        return this.http.get<Event[]>(this.baseURL+'ShowEvents')
+      }
+
   }
   
   

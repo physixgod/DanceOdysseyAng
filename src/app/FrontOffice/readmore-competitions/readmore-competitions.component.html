@@ -1,0 +1,33 @@
+<div class="hero overlay" style="background-image: url('/assets/images/competition.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <div *ngIf="competition" class="competition-details">
+            <div class="header">
+              <h1>{{ competition.competitionName }}</h1>
+              <p class="meta">Start Date: {{ competition.startDate | date }}</p>
+              <p class="meta">End Date: {{ competition.endDate | date }}</p>
+            </div>
+  
+            <div class="additional-details">
+              <p><strong>Location:</strong> {{ competition.location }}</p>
+              <p><strong>Dance Category:</strong> {{ competition.danceCategory }}</p>
+              <p><strong>Prize:</strong> {{ competition.prize }}</p>
+              <!-- Add more details as needed -->
+            </div>
+  
+            <div class="description">
+              <p>{{ competition.description }}</p>
+            </div>
+  
+            <div class="actions">
+              <!-- You can add buttons or links for additional actions -->
+              <a> <button class="btn btn-primary">Register Now</button></a>
+            </div>
+            <div style="margin-top: 8px;"> <button class="btn btn-primary">Back</button> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

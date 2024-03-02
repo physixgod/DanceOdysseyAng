@@ -1,6 +1,8 @@
+
+<head>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/Front Office/fonts/icomoon/style.css">
-<link rel="stylesheet" href="/assets/Front Office/css/bootstrap/bootstrap.css">
+<link  rel="stylesheet" href="/assets/Front Office/fonts/icomoon/style.css">
+<link  rel="stylesheet" href="/assets/Front Office/css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="/assets/Front Office/css/jquery-ui.css">
 <link rel="stylesheet" href="/assets/Front Office/css/owl.carousel.min.css">
 <link rel="stylesheet" href="/assets/Front Office/css/owl.theme.default.min.css">
@@ -9,7 +11,10 @@
 <link rel="stylesheet" href="/assets/Front Office/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="/assets/Front Office/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="/assets/Front Office/css/aos.css">
-<link rel="stylesheet" href="/assets/Front Office/css/style.css">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="/assets/Front Office/css/style.css">
+
+<noscript><link rel="stylesheet" href="/assets/Front Office/css/style.css"></noscript>
+</head>
 <div class="site-wrap">
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -19,12 +24,13 @@
     </div>
     <div class="site-mobile-menu-body"></div>
 </div>
+<body>
 <app-header-front></app-header-front>
 
 <router-outlet></router-outlet>
 <app-footer-front></app-footer-front>
 
-
+</body>
 <script src="/assets/Front Office/js/jquery-3.3.1.min.js"></script>
 <script src="/assets/Front Office/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="/assets/Front Office/js/jquery-ui.js"></script>

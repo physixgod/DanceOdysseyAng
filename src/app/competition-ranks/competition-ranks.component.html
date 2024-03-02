@@ -1,0 +1,28 @@
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    
+  
+      <!-- Ranks Table -->
+      <div class="card">
+        <h5 class="card-header">LEADERBOARD</h5>
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Dancer Full Name</th>
+                <th>Rank</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">  
+              <tr *ngFor="let entry of ranksArray">
+                <td>{{ entry.dancerName }}</td>
+                <td>{{ entry.rank }}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,4 @@
-<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+<div class="hero overlay" style="background-image: url('/assets/images/competition.jpg');">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-5 mx-auto text-center">
@@ -24,8 +24,8 @@
                 <div class="text">
                     <span class="meta">{{competition.startDate}}</span>
                     <h3 class="mb-4"><a href="#">{{competition.competitionName}}</a></h3>
-                    <p>{{competition.description}}</p>
-                    <p><a href="#">Read more</a></p>
+                    <p>{{ competition.description | slice:0:100 }}...</p>
+                    <p><a [routerLink]="['/competition', competition.competitionID]">Read more</a></p>
                 </div>
             </div>
         </div>

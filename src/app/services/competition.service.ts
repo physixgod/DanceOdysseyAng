@@ -7,6 +7,7 @@ import { Competition } from '../models/competition';
   providedIn: 'root'
 })
 export class CompetitionService {
+ 
 
   private baseURL = "http://localhost:8086/competition/"
 
@@ -24,5 +25,20 @@ export class CompetitionService {
   SearchCompetitionByName(name: string): Observable<Competition[]> {
     return this.http.get<Competition[]>(`${this.baseURL}SearchCompetitionByName/${name}`);
 }
-
+getArchivedCompetitions():Observable<Competition[]>{
+  return this.http.get<Competition[]>(this.baseURL+'showClosedCompetition')
 }
+getRanks(idCompetition: number): Observable<Map<string, number>> {
+  return this.http.get<Map<string, number>>(`${this.baseURL}showDancersRank/${idCompetition}`);
+}
+getCompetitionById(id: number): Observable<Competition> {
+  return this.http.get<Competition>(`${this.baseURL}getcp/${id}`);
+}
+registerDancerForCompetition(idDancer: number, idCompetition: number): Observable<void> {
+  const registrationData = {
+    idDancer: idDancer,
+    idCompetition: idCompetition
+  };
+
+  return this.http.post<void>(`${this.baseURL}registerCompetition`, registrationData);
+}}
