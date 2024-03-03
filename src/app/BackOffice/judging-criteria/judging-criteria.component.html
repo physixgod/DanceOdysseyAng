@@ -1,0 +1,17 @@
+<!-- judging-criteria.component.html -->
+
+<div *ngFor="let competition of competitions" class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ competition.competitionName }}</h5>
+      <p class="card-text">
+        <strong>Dance Category:</strong> {{ competition.danceCategory }}<br>
+        <strong>Start Date:</strong> {{ competition.startDate | date }}<br>
+        <strong>End Date:</strong> {{ competition.endDate | date }}<br>
+        <strong>Location:</strong> {{ competition.location }}<br>
+        <strong>Description:</strong> {{ competition.description }}
+      </p>
+      <!-- Add the button "Put Criteria File" here -->
+      <button class="btn btn-primary" >Put Criteria File</button>
+    </div>
+  </div>
+  

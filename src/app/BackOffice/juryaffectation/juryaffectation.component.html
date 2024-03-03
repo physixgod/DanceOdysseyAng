@@ -1,0 +1,48 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Available Juries</h4>
+  <div class="row">
+    <form class="d-flex mb-3">
+      <style>.input-group-merge {
+        width: 300px; /* Adjust the width as needed */
+        margin-left: auto; /* Move it to the right */
+        margin-right: 20px; /* Add some right margin for spacing */
+      }</style>
+      <div class="input-group input-group-merge">
+          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by jury name"
+            aria-label="Search..."
+            aria-describedby="basic-addon-search31"
+            [(ngModel)]="searchName"
+            name="searchName"
+            (input)="onSearch()"
+          />
+          </div>
+    </form>
+    <div class="col-md-6 col-lg-4 mb-3" *ngFor="let jury of juries">
+      <div class="card h-100">
+        <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ jury.firstName }} {{ jury.lastName }}</h5>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Expertise Area:</strong> {{ jury.expertiseArea }}
+            </li>
+            <li class="list-group-item">
+              <strong>Diploma:</strong> {{ jury.diploma }}
+            </li>
+            <li class="list-group-item">
+              <strong>Email:</strong> {{ jury.email }}
+            </li>
+            <!-- Vous pouvez ajouter d'autres détails des jurys ici -->
+          </ul>
+          <div class="mt-3">
+            <button class="btn btn-outline-primary" (click)="addJuryToCompetition(jury.juryID)">Add as a jury's competition</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

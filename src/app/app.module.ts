@@ -17,6 +17,13 @@ import { AddCompetitionComponent } from './BackOffice/add-competition/add-compet
 import { FormsModule } from '@angular/forms';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+import { JuryListComponent } from './BackOffice/addjury/jurylist.component';
+import { GetjuriesComponent } from './BackOffice/getjuries/getjuries.component';
+import { CompetitionDetailsComponent } from './BackOffice/competition-details/competition-details.component';
+import { JuryaffectationComponent } from './BackOffice/juryaffectation/juryaffectation.component';
+import { JudgingCriteriaComponent } from './BackOffice/judging-criteria/judging-criteria.component';
+import { ShowaffectedjuriesComponent } from './BackOffice/showaffectedjuries/showaffectedjuries.component';
+import { ShowAprrovedJuriesComponent } from './BackOffice/show-aprroved-juries/show-aprroved-juries.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +40,13 @@ import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
     AddCompetitionComponent,
     ListCompetitionsComponent,
     AddEventComponent,
+    JuryListComponent,
+    GetjuriesComponent,
+    CompetitionDetailsComponent,
+    JuryaffectationComponent,
+    JudgingCriteriaComponent,
+    ShowaffectedjuriesComponent,
+    ShowAprrovedJuriesComponent,
   ],
   imports: [
     BrowserModule,
