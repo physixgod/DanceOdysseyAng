@@ -1,0 +1,37 @@
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Ajouter un nouveau cours de danse</h4>
+        <div class="row">
+            <div class="col-xxl">
+                <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="mb-0">Formulaire de cours de danse</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="course-name">Nom du cours</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" [(ngModel)]="course.courseName" name="courseName" id="course-name" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="description">Description</label>
+                                <div class="col-sm-10">
+                                    <textarea id="description" class="form-control" [(ngModel)]="course.description" name="description"></textarea>
+                                </div>
+                            </div>
+                            <!-- Les autres champs du formulaire -->
+                            <!-- ... -->
+                            <div class="row justify-content-end">
+                                <div class="col-sm-10">
+                                    <button type="button" class="btn btn-primary save-dance-course-button" (click)="addCourse()">Enregistrer le cours</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
