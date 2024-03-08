@@ -1,0 +1,92 @@
+<!-- list-product.component.html -->
+<head>
+  <!-- ... autres balises du head ... -->
+  <link rel="stylesheet" href="list-product.component.css">
+</head>
+<head>
+  <!-- Autres balises head... -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <div class="layout-page">
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product Name</th>
+                  <th>Reference</th>
+                  <th>Price</th>
+                  <th>Points Price</th>
+                  <th>Model</th>
+                  <th>Date Publication</th>
+                  <th>Quantity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+ 
+<td>
+  <div (click)="enlargeImage(product.imageUrl)">
+    <img
+      *ngIf="product.imageUrl"
+      [src]="product.imageUrl"
+      alt="Product Image"
+      class="img-fluid rounded clickable-image"
+      style="max-width: 50px; max-height: 50px;"
+    />
+    <div *ngIf="!product.imageUrl" class="no-image text-center py-2">
+      No Image
+    </div>
+  </div>
+</td>
+
+<!-- ... (votre code existant) ... -->
+
+<!-- list-product.component.html -->
+
+<!-- ... (votre code existant) ... -->
+<div *ngIf="selectedImage" class="enlarged-image-overlay" (click)="closeImageOnOutsideClick($event)">
+  <div class="enlarged-image-container">
+    <img [src]="selectedImage" alt="Enlarged Image" class="img-fluid" (click)="$event.stopPropagation()" />
+  </div>
+</div>
+<!-- ... (votre code existant) ... -->
+
+                  <td>{{ product.productName }}</td>
+                  <td>{{ product.refProduct }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.pointsPrice }}</td>
+                  <td>{{ product.model }}</td>
+                  <td>{{ product.datePublication | date: 'medium' }}</td>
+                  <td>{{ product.quantity }}</td>
+                  <td>
+                    <div class="button-group">
+                      <a class="btn btn-primary btn-sm" routerLink="/admin/edit-product/{{ product.idProduct }}" title="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <br>
+                      <br>
+                      <button class="btn btn-danger btn-sm" (click)="archiveProduct(product.idProduct)" title="Archive">
+                        <i class="fas fa-archive"></i>
+                      </button>
+                    </div>
+                  </td>
+                  
+                  
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>>
+

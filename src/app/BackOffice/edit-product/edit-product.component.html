@@ -1,0 +1,84 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row mb-5">
+              <div class="col-md-8 offset-md-2">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">Edit Product</h5>
+                    <form *ngIf="product" (ngSubmit)="saveChanges()" #editForm="ngForm">
+                      <!-- Reference -->
+                      <div class="mb-3">
+                        <label for="refProduct">Reference</label>
+                        <input type="number" class="form-control" [(ngModel)]="product.refProduct" name="refProduct" id="refProduct" />
+                      </div>
+  
+                      <!-- Product Name -->
+                      <div class="mb-3">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.productName" name="productName" id="productName" />
+                      </div>
+  
+                      <!-- Price -->
+                      <div class="mb-3">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id="price" />
+                      </div>
+  
+                      <!-- Description -->
+                      <div class="mb-3">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" [(ngModel)]="product.description" name="description" id="description"></textarea>
+                      </div>
+  
+                      <!-- Quantity -->
+                      <div class="mb-3">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" class="form-control" [(ngModel)]="product.quantity" name="quantity" id="quantity" />
+                      </div>
+  
+                      <!-- Date Publication -->
+                      <div class="mb-3">
+                        <label for="datePublication">Date Publication</label>
+                        <input type="date" class="form-control" [(ngModel)]="product.datePublication" name="datePublication" id="datePublication" />
+                      </div>
+  
+                      <!-- Points Price -->
+                      <div class="mb-3">
+                        <label for="pointsPrice">Points Price</label>
+                        <input type="number" class="form-control" [(ngModel)]="product.pointsPrice" name="pointsPrice" id="pointsPrice" />
+                      </div>
+  
+                      <!-- Model -->
+                      <div class="mb-3">
+                        <label for="model">Model</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.model" name="model" id="model" />
+                      </div>
+  
+                      <!-- Image Upload -->
+                      <div class="mb-3">
+                        <label for="formFile">Product Image</label>
+                        <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" />
+                      </div>
+  
+                 
+  
+                      <!-- Save Button -->
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="button" class="btn btn-primary" (click)="saveChanges()">Save Product</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

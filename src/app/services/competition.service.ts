@@ -8,7 +8,7 @@ import { Competition } from '../models/competition';
 })
 export class CompetitionService {
 
-  private baseURL = "http://localhost:8080/competition/"
+  private baseURL = "http://localhost:8086/competition/"
 
   constructor(private http : HttpClient) { }
 

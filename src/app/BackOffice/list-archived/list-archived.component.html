@@ -1,0 +1,43 @@
+
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Reference</th>
+                    <th>Price</th>
+                    <th>Points Price</th>
+                    <th>Model</th>
+                    <th>Date Publication</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of products">
+               
+                    <td>{{ product.productName }}</td>
+                    <td>{{ product.refProduct }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.pointsPrice }}</td>
+                    <td>{{ product.model }}</td>
+                    <td>{{ product.datePublication | date: 'medium' }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                      <!-- Add any additional actions for archived products if needed -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

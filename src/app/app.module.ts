@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
@@ -14,8 +14,16 @@ import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importez ReactiveFormsModule ici
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { AddProductComponent } from './BackOffice/add-product/add-product.component';
+import { CommonModule } from '@angular/common';
+import { ListProductComponent } from './BackOffice/list-product/list-product.component';
+import { EditProductComponent } from './BackOffice/edit-product/edit-product.component';
+import { CategorieProductComponent } from './BackOffice/categorie-product/categorie-product.component';
+import { ShowProductComponent } from './FrontOffice/show-product/show-product.component';
+import { ListArchivedComponent } from './BackOffice/list-archived/list-archived.component';
+import { ListCategoriesComponent } from './BackOffice/list-categories/list-categories.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +39,22 @@ import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-
     ListCompetitionComponent,
     AddCompetitionComponent,
     ListCompetitionsComponent,
+    AddProductComponent,
+    ListProductComponent,
+    EditProductComponent,
+    CategorieProductComponent,
+    ShowProductComponent,
+    ListArchivedComponent,
+    ListCategoriesComponent,
   ],
   imports: [
-    FormsModule, // Add this line to import FormsModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule, // Ajoutez ceci pour utiliser ReactiveFormsModule
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

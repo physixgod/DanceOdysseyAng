@@ -148,6 +148,45 @@
           <div data-i18n="Boxicons">Add Competition</div>
         </a>
       </li>
+ <!-- Components -->
+ <li class="menu-header small text-uppercase">
+  <span class="menu-header-text">Products</span>
+</li>
+<!-- Cards -->
+<li class="menu-item">
+  <a [routerLink]="['/admin/list_Categories']" routerLinkActive="active-link" class="menu-link">
+    <!-- Change the icon class to your desired icon, e.g., bx bx-trophy to bx bx-list-ul -->
+    <i class="menu-icon tf-icons bx bx-list-ul"></i>
+    <div data-i18n="Basic">List_Categories</div>
+  </a>
+</li>
+<li class="menu-item">
+  <a [routerLink]="['/admin/add-Categoriesproduct']" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-plus"></i>
+    <div data-i18n="Boxicons">Add Categories </div>
+  </a>
+</li>
+<li class="menu-item">
+  <a [routerLink]="['/admin/list-product']" routerLinkActive="active-link" class="menu-link">
+    <!-- Change the icon class to your desired icon, e.g., bx bx-trophy to bx bx-list-ul -->
+    <i class="menu-icon tf-icons bx bx-list-ul"></i>
+    <div data-i18n="Basic">List Products</div>
+  </a>
+</li>
+
+ <li class="menu-item">
+   <a [routerLink]="['/admin/add-product']" class="menu-link">
+     <i class="menu-icon tf-icons bx bx-plus"></i>
+     <div data-i18n="Boxicons">Add Product</div>
+   </a>
+ </li>
+ <li class="menu-item">
+  <a [routerLink]="['/admin/list_Archived']" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-archive"></i>
+    <div data-i18n="Boxicons">List-Archived</div>
+  </a>
+</li>
+
 
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
