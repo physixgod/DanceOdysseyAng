@@ -9,20 +9,22 @@ import { Event } from 'src/app/models/event';
 })
 export class AddEventComponent {
   event: Event = {
-    eventName: '', // Example: You can add more attributes as needed
+    eventName: '',
     startDate: new Date(),
     location: '',
     maxParticipants: 0,
     eventID: 0,
-    description:''
+    description: ''
   };
+
+  dancerId: number = 1; // Replace with the actual dancer ID, or get it dynamically
 
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {}
 
-  addEvent() {
-    this.eventService.addEvent(this.event).subscribe(
+  addEventByDancer() {
+    this.eventService.addEventByDancer(this.dancerId, this.event).subscribe(
       (data) => {
         console.log("DATA: ", data);
         alert("Event Added Successfully :)");

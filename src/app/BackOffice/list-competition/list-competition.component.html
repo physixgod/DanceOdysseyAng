@@ -3,9 +3,28 @@
         <div class="layout-page">
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <form class="d-flex mb-3" (ngSubmit)="onSearch()">
-                        <input class="form-control me-2 search-bar" type="search" placeholder="Competition Name" aria-label="Search" [(ngModel)]="searchName"name="searchName" />
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <style>
+                        .input-group-merge {
+  width: 300px; /* Adjust the width as needed */
+  margin-left: auto; /* Move it to the right */
+  margin-right: 20px; /* Add some right margin for spacing */
+}
+                    </style>
+                    <form class="d-flex mb-3">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Search by competition name"
+                              aria-label="Search..."
+                              aria-describedby="basic-addon-search31"
+                              [(ngModel)]="searchName"
+                              name="searchName"
+                              (input)="onSearch()"
+                            />
+                            </div>
+                          
                       </form>
                     <div class="row mb-5">
                         <div class="col-md-6 col-lg-4" *ngFor="let competition of competitions">
@@ -19,9 +38,9 @@
                                     <p class="card-text"> Max Participants : {{ competition.maxParticipants}}</p>
                                     <p class="card-text"> Prize : {{ competition.prize}}</p>
                         
-                                    <a [routerLink]="['/admin/add-competition']" class="btn btn-primary spaced-button">Update</a>
-                                    <a [routerLink]="['']"  class="btn btn-primary spaced-button">Set Juries</a>
-                                    <a [routerLink]="['/admin/list-competition']"(click)="Close(competition.competitionID)" class="btn btn-primary">Close</a>
+                                    <a [routerLink]="['/admin/updateCompetition',competition.competitionID] " class="btn btn-primary spaced-button">Update</a>
+                                    <a [routerLink]="['/admin/competitionDancers', competition.competitionID]" class="btn btn-primary spaced-button">Show Dancers</a>
+                                    <a [routerLink]="[]"(click)="Close(competition.competitionID)" class="btn btn-primary">Close</a>
                                 </div>
                             </div>
                         </div>

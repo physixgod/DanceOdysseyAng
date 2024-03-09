@@ -22,6 +22,11 @@ import { TestComponent } from './test/test.component';
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
 import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
 import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
+import { ShowCompetitionsDancersComponent } from './BackOffice/show-competitions-dancers/show-competitions-dancers.component';
+import { UpdateCompetitionComponent } from './BackOffice/update-competition/update-competition.component';
+import { MyCompetitionsComponent } from './FrontOffice/my-competitions/my-competitions.component';
+import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
+import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,11 @@ import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitio
     ArchiveCompetitionsComponent,
     CompetitionRanksComponent,
     ReadmoreCompetitionsComponent,
+    ShowCompetitionsDancersComponent,
+    UpdateCompetitionComponent,
+    MyCompetitionsComponent,
+    MyEventsComponent,
+    UpgradeEventComponent,
   ],
   imports: [
     BrowserModule,

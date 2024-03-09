@@ -54,14 +54,20 @@ CompetitionByName(name:string) {
 }
 onSearch(): void {
   console.log('Search Name:', this.searchName);
-  // ... rest of your code
-  this.competitionService.SearchCompetitionByName(this.searchName).subscribe(
-    (data: Competition[]) => {
-      this.competitions = data; // Update competitions array with the search results
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
+
+  if (this.searchName.trim() === '') {
+    // If the search input is empty, fetch all competitions
+    this.AllCompetitions();
+  } else {
+    // If there's a search input, search competitions by name
+    this.competitionService.SearchCompetitionByName(this.searchName).subscribe(
+      (data: Competition[]) => {
+        this.competitions = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }
 }

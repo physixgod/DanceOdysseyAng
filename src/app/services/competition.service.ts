@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Competition } from '../models/competition';
+import { Dancer } from '../models/competition';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +35,14 @@ getRanks(idCompetition: number): Observable<Map<string, number>> {
 getCompetitionById(id: number): Observable<Competition> {
   return this.http.get<Competition>(`${this.baseURL}getcp/${id}`);
 }
-registerDancerForCompetition(idDancer: number, idCompetition: number): Observable<void> {
-  const registrationData = {
-    idDancer: idDancer,
-    idCompetition: idCompetition
-  };
-
-  return this.http.post<void>(`${this.baseURL}registerCompetition`, registrationData);
-}}
+affecterDancerCompetition(idC: number, idD: number): Observable<any> {
+  const url = `${this.baseURL}Register/${idC}/${idD}`;
+  return this.http.post(url, {});
+}
+getCompetitionDancers(idCompetition: number): Observable<Dancer[]> {
+return this.http.get<Dancer[]>(`${this.baseURL}getCompetitionDancers/${idCompetition}`);
+}
+getMyCompetitions(idDancer: number): Observable<Map<string, string>> {
+  return this.http.get<Map<string, string>>(`${this.baseURL}getMyCompetitions/${idDancer}`);
+}
+}

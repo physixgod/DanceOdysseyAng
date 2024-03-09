@@ -11,6 +11,7 @@ import { CompetitionService } from 'src/app/services/competition.service';
 export class ReadmoreCompetitionsComponent implements OnInit {
 
   competition!: Competition;
+  registrationSuccess: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,11 +19,8 @@ export class ReadmoreCompetitionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Retrieve the competition ID from the route parameters
     this.route.params.subscribe(params => {
       const competitionID = +params['id'];
-
-      // Fetch the details of the competition based on its ID
       this.competitionService.getCompetitionById(competitionID).subscribe(
         (data) => {
           this.competition = data;
@@ -32,5 +30,18 @@ export class ReadmoreCompetitionsComponent implements OnInit {
         }
       );
     });
+  }
+registerForCompetition(): void {
+    const dancerID = 1; 
+
+    this.competitionService.affecterDancerCompetition(this.competition.competitionID, dancerID).subscribe(
+      (response) => {
+        console.log('Successfully registered for the competition', response);
+        this.registrationSuccess = true;
+      },
+      (error) => {
+        console.error('Error registering for the competition', error);
+      }
+    );
   }
 }

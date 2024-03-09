@@ -19,12 +19,15 @@
             <div class="description">
               <p>{{ competition.description }}</p>
             </div>
+            <div *ngIf="registrationSuccess" class="alert alert-success" role="alert">
+              You have been successfully registered for the competition!
+            </div>
   
             <div class="actions">
               <!-- You can add buttons or links for additional actions -->
-              <a> <button class="btn btn-primary">Register Now</button></a>
+              <button class="btn btn-primary" (click)="registerForCompetition()">Register Now</button>
             </div>
-            <div style="margin-top: 8px;"> <button class="btn btn-primary">Back</button> </div>
+            <div style="margin-top: 8px;"> <button [routerLink]="['/competitions']" class="btn btn-primary">Back</button> </div>
           </div>
         </div>
       </div>

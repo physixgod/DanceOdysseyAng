@@ -1,0 +1,48 @@
+<div class="hero overlay" style="background-image: url('/assets/images/competition.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <h1 class="text-white">My Competitions</h1>
+          <p>Here, you can view the competitions in which you've taken part and see your ranking for each of them</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="site-section bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="widget-next-match">
+            <table class="table custom-table">
+              <thead>
+                <tr>
+                  <th>Competition Name</th>
+                  <th>Competition Rank</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let entry of competitionsData$ | async | keyvalue">
+                  <td>{{ entry.key }}</td>
+                  <td>{{ entry.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .widget-next-match {
+  margin: 0 auto; 
+  margin-left: 30%;/* Set left and right margins to 'auto' to center horizontally */
+  width:800px;
+}
+
+.custom-table {
+  width: 800px;
+  margin-left: 0%; /* Ensure the table takes the full width of its container */
+}
+  </style>
+  

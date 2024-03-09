@@ -32,4 +32,31 @@ export class Competition {
     telNumber!: string;
     competitionsManagedByJuries!: Competition[];
   }
+  export enum DanceStyle {
+    ZOMBA,
+    SALSA,
+    Ballet,
+    HIPHOP,
+    TANGO,
+  }
+  
+  export enum ExperienceLevel {
+    BEGINNER,
+    AMATEUR,
+    ADVANCED,
+    EXPERT
+  }
+  
+  export class Dancer {
+    dancerId!: number;
+    firstName!: string;
+    lastName!: string;
+    password!: string;
+    points!: number;
+    danceStyle!: DanceStyle;
+    experienceLevel!: ExperienceLevel;
+    email!: string;
+    telNum!: string;
+
+  }
   
