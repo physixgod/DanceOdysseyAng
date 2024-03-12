@@ -15,12 +15,10 @@ export class AddProductComponent implements OnInit {
   subCategories: CategoriesProduct[] = [];
   categoryId: number = 0;
   subCategoryIds: number[] = [];
-  selectedFile: File | null = null;
-
+  selectedFiles: File[] = [];
   product: Product = {
     idProduct: 0,
     archived: false,
-    imageUrl: '',
     refProduct: 0,
     productName: '',
     price: 0,
@@ -40,7 +38,7 @@ export class AddProductComponent implements OnInit {
     images: [],
   };
 
-  constructor(private productService: ProductService,private router: Router) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -72,27 +70,42 @@ export class AddProductComponent implements OnInit {
   
   
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] || null;
+  // Réinitialisez le tableau des fichiers sélectionnés
+  this.selectedFiles = [];
+
+  // Parcourez les fichiers sélectionnés et ajoutez-les à votre tableau
+  for (let i = 0; i < event.target.files.length; i++) {
+    this.selectedFiles.push(event.target.files[i]);
   }
+}
+
   addProduct(): void {
     if (!this.categoryId) {
       alert('Veuillez sélectionner une catégorie.');
       return;
     }
-  
+
     this.productService.addProduct(this.product).subscribe(
       (addedProduct: Product) => {
         console.log('Product added successfully:', addedProduct);
-  
-        if (this.selectedFile) {
-          this.uploadImage(addedProduct.idProduct);
+
+        if (this.selectedFiles.length > 0) {
+          this.productService.addImagesToProduct(addedProduct.idProduct, this.selectedFiles).subscribe(
+            (result) => {
+              console.log('Images added successfully:', result);
+            },
+            (error) => {
+              console.error('Error adding images:', error);
+            }
+          );
         }
-  
+
+        // Ajoutez le produit à la catégorie et sous-catégorie ici
+        this.addProductToCategory(addedProduct.idProduct, this.categoryId, this.subCategoryIds[0]);
+
         console.log('Navigating to list-product page...');
         // Navigate to the "list-product" route after adding the product
-        this.router.navigate(['/admin/list-product']);
-  
-        // Rest of the code remains the same...
+       window.location.reload();
       },
       (error) => {
         console.error('Error adding product:', error);
@@ -100,22 +113,9 @@ export class AddProductComponent implements OnInit {
     );
   }
   
-  
 
-  uploadImage(productId: number): void {
-    this.productService.uploadImage(this.selectedFile!, productId).subscribe(
-      (uploadResult: string) => {
-        console.log('Image uploaded successfully:', uploadResult);
-      },
-      (uploadError) => {
-        console.error('Error uploading image:', uploadError);
-        // Gérer l'erreur ici (affichage d'un message, redirection, etc.)
-      }
-    );
-  }
-
-  // Méthode pour ajouter le produit à la catégorie
-  addProductToCategory(productId: number, categoryId: number, subCategoryId: number): void {
+   // Méthode pour ajouter le produit à la catégorie
+   addProductToCategory(productId: number, categoryId: number, subCategoryId: number): void {
     this.productService.addProductToCategory(productId, categoryId, subCategoryId).subscribe(
       (result) => {
         console.log(result);

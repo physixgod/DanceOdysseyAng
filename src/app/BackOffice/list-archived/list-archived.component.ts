@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-import { Product, RatingProduct, CategoriesProduct, ImageData } from 'src/app/models/product'; // Import the necessary classes
+import { Product, RatingProduct, CategoriesProduct, Image } from 'src/app/models/product'; // Import the necessary classes
 
 @Component({
   selector: 'app-list-archived',

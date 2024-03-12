@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product';
+import { Product, Image } from 'src/app/models/product';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-
   productId!: number;
   product: Product | undefined;
-  selectedFile: File | null = null;  // Assurez-vous que selectedFile est initialisé à null
+  selectedImages: Image[] = [];
+  selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService,private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -26,51 +30,88 @@ export class EditProductComponent implements OnInit {
 
   loadProductDetails(): void {
     this.productService.getProductsById(this.productId).subscribe(
-      (data) => {
+      (data: Product[]) => {
         if (data && data.length > 0) {
-          this.product = data[0];
+          this.product = { ...data[0] }; // Spread operator for creating a copy
         } else {
-          // Gérer le cas où le produit n'est pas trouvé
+          // Handle the case where the product is not found
         }
       },
       (error) => {
-        console.error('Erreur lors du chargement des détails du produit :', error);
+        console.error('Error loading product details:', error);
       }
     );
-    
   }
+
   saveChanges(): void {
-    if (this.product) {
-      if (this.selectedFile !== null) {
-        this.productService.updateImage(this.productId, this.selectedFile).subscribe(
-          (result: string) => {
-            console.log('Image updated successfully:', result);
-            
-            // Call loadProductDetails to update the product information
-            this.loadProductDetails();
-          },
-          (error) => {
-            console.error('Error updating the image:', error);
-            // Handle errors, display a message to the user, etc.
+    if (this.product && this.product.idProduct) {
+      // Update product details
+      this.productService.updateProductById(this.product.idProduct, this.product).subscribe(
+        (updatedProduct: Product) => {
+          console.log('Product details updated successfully:', updatedProduct);
+
+          // Check if a new file is selected
+          if (this.selectedFile) {
+            // Assuming you have logic to handle selected images
+            this.selectedImages.forEach((image) => {
+              // Make sure this.product is defined before accessing its properties
+              if (this.product && this.product.idProduct) {
+                this.productService.updateImageUrl(
+                  this.product.idProduct,
+                  image.id,
+                  this.selectedFile!
+                ).subscribe(
+                  (updatedImageUrl) => {
+                    console.log('Image URL updated successfully. New URL:', updatedImageUrl);
+
+                    // Update the product image URL with the new one
+                    image.imageUrl = updatedImageUrl;
+                  },
+                  (error) => {
+                    console.error('Error updating image URL:', error);
+
+                    // Output the specific error message from the server response body
+                    console.error('Server error message:', error.error);
+                    console.error('Status:', error.status);
+
+                    // You can add additional logic here to handle the error, e.g., show a message to the user
+                  }
+                );
+              }
+            });
           }
-        );
-      } else {
-        console.error('The selected file is null.');
-      }
-    }        this.router.navigate(['/admin/list-product']);
+        },
+        (error) => {
+          console.error('Error updating product:', error);
 
-    // No need to navigate here, as it will be handled by the loadProductDetails() call
+          // Output the specific error message from the server response body
+          console.error('Server error message:', error.error);
+          console.error('Status:', error.status);
+
+          // You can add additional logic here to handle the error, e.g., show a message to the user
+        }
+      );
+    }
   }
-  
 
+  onImageSelected(image: Image): void {
+    const index = this.selectedImages.findIndex(
+      (selectedImage) => selectedImage.id === image.id
+    );
+
+    if (index === -1) {
+      this.selectedImages.push(image);
+    } else {
+      this.selectedImages.splice(index, 1);
+    }
+  }
 
   onFileSelected(event: any): void {
-    // Gérez la logique de sélection de fichier ici
-    const fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      this.selectedFile = fileList[0];
-    } else {
-      this.selectedFile = null;
+    const files: FileList = event.target.files;
+
+    if (files && files.length > 0) {
+      this.selectedFile = files[0];
+      console.log('Selected File:', this.selectedFile);
     }
   }
 }

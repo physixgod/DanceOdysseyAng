@@ -1,9 +1,10 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';  // Importer 'of' ici
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Product } from '../models/product';
-import{CategoriesProduct} from'../models/categorie-product';
+import { Product,Image } from '../models/product';
+import { CategoriesProduct } from '../models/categorie-product';
 
 @Injectable({
   providedIn: 'root'
@@ -13,43 +14,12 @@ export class ProductService {
   private baseURL = 'http://localhost:8086/DanceOdyssey/products';
 
   constructor(private http: HttpClient) { }
-  getArchivedProducts(): Observable<Product[]> {
-    const url = `${this.baseURL}/archived`;
-
-    return this.http.get<Product[]>(url)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-  getProductByRefProduct(refProduct: number): Observable<Product> {
-    const url = `${this.baseURL}/byRefProduct/${refProduct}`;
-    
-    return this.http.get<Product>(url)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-  createCategoryWithSubcategories(categoryName: string, subcategoryNames: string[]): Observable<CategoriesProduct> {
-    const url = `${this.baseURL}/createCategoryWithSubcategories`;
-    const request = { categoryName, subcategoryNames };
-
-    return this.http.post<CategoriesProduct>(url, request).pipe(
-      catchError(this.handleError)
-    );
-  
-
-
-
-    return throwError('Something went wrong');
-  }
-
 
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.baseURL}/AddProduct`, product).pipe(
       catchError(this.handleError)
     );
   }
-
   getProductsById(id: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseURL}/${id}`).pipe(
       catchError(this.handleError)
@@ -62,31 +32,35 @@ export class ProductService {
     );
   }
 
+  createCategoryWithSubcategories(categoryName: string, subcategoryNames: string[]): Observable<CategoriesProduct> {
+    const url = `${this.baseURL}/createCategoryWithSubcategories`;
+    const request = { categoryName, subcategoryNames };
+
+    return this.http.post<CategoriesProduct>(url, request)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getArchivedProducts(): Observable<Product[]> {
+    const url = `${this.baseURL}/archived`;
+
+    return this.http.get<Product[]>(url)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.baseURL}/updateProducts`, product).pipe(
       catchError(this.handleError)
     );
   }
+  getProductByRefProduct(refProduct: number): Observable<Product> {
+    const url = `${this.baseURL}/byRefProduct/${refProduct}`;
 
-
-  updateImage(productId: number, file: File): Observable<string> {
-    const formData: FormData = new FormData();
-    formData.append('image', file, file.name);
-  
-    const url = `${this.baseURL}/updateImage/${productId}`;
-    return this.http.put<string>(url, formData);
-  
-  }
-  
-  getImageForProduct(id: number): Observable<Blob> {
-    const url = `${this.baseURL}/produits/${id}/image`;
-    return this.http.get(url, { responseType: 'arraybuffer' })
+    return this.http.get<Product>(url)
       .pipe(
-        map((arrayBuffer: ArrayBuffer) => new Blob([arrayBuffer])),
-        catchError((error: any) => {
-          console.error(`An error occurred: ${error.message}`);
-          return throwError('Image retrieval failed');
-        })
+        catchError(this.handleError)
       );
   }
 
@@ -133,14 +107,7 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-  uploadImage(file: File, productId: number): Observable<string> {
-    const formData: FormData = new FormData();
-    formData.append('image', file, file.name);
 
-    return this.http.post<string>(`${this.baseURL}/uploadImage/${productId}`, formData, { responseType: 'text' as 'json' }).pipe(
-      catchError((error: any) => this.handleError(error))
-    );
-  }
 // Dans votre service Angular (product.service.ts)
 
 archiveProduct(productId: number): Observable<string> {
@@ -151,6 +118,27 @@ archiveProduct(productId: number): Observable<string> {
     catchError(this.handleError)
   );
 }
+addImagesToProduct(productId: number, images: File[]): Observable<string> {
+  const formData = new FormData();
+  images.forEach((image, index) => {
+    formData.append('imageFiles', image, `image${index}`);
+  });
+
+  const headers = new HttpHeaders();
+  headers.append('Content-Type', 'multipart/form-data');
+  
+  return this.http.post<string>(`${this.baseURL}/${productId}/addImages`, formData, { headers });
+}
+
+
+getImagesForProduct(productId: number): Observable<Image[]> {
+  const url = `${this.baseURL}/${productId}/images`;
+
+  return this.http.get<Image[]>(url).pipe(
+    catchError(this.handleError)
+  );
+}
+
 private handleError(error: any): Observable<never> {
   console.error('An error occurred:', error);
 
@@ -164,5 +152,31 @@ private handleError(error: any): Observable<never> {
   }
 
   return throwError('Something went wrong');
+}
+searchProductsByName(name: string): Observable<Product[]> {
+  const url = `${this.baseURL}/search/${name}`;
+
+  return this.http.get<Product[]>(url)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+updateImageUrl(productId: number, imageId: number, updatedImageFile: File): Observable<string> {
+  const formData = new FormData();
+  formData.append('imageFile', updatedImageFile);
+
+  return this.http.put<string>(`${this.baseURL}/${productId}/images/${imageId}`, formData)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+
+updateProductById(productId: number, updatedProduct: Product): Observable<Product> {
+  const url = `${this.baseURL}/${productId}`;
+
+  return this.http.put<Product>(url, updatedProduct)
+    .pipe(
+      catchError(this.handleError)
+    );
 }
 }

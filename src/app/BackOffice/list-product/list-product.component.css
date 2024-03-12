@@ -1,27 +1,46 @@
-/* list-product.component.css */
+   /* Ajoutez votre code CSS ici */
+   body {
+    font-family: Arial, sans-serif;
+  }
 
-.enlarged-image-overlay {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 800px;
-    max-height: 80vh;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  .layout-wrapper {
+    /* Ajoutez vos styles pour le wrapper ici */
   }
-  
-  .enlarged-image-container {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-  .enlarged-image-container img {
+
+  .table {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: #fff;
+    border-collapse: collapse;
   }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .table th {
+    background-color: #f8f9fa;
+  }
+
+  .product-cell {
+    cursor: pointer;
+  }
+
+  .product-image {
+    max-width:55px; /* Ajustez la taille de l'image selon vos besoins */
+    height: auto;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn {
+    /* Ajoutez vos styles pour les boutons ici */
+  }
+  

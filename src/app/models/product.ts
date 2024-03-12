@@ -1,9 +1,6 @@
-// product.model.ts
-
 export class Product {
   idProduct!: number;
   refProduct!: number;
-  imageUrl!: string;
   productName!: string;
   price!: number;
   pointsPrice!: number;
@@ -15,12 +12,11 @@ export class Product {
   quantity!: number;
   ratingProductsP: RatingProduct[] = [];
   categoriesProduct?: CategoriesProduct | null;
-  images: ImageData[] = [];
+  images: Image[] = [];
 
   constructor(options: {
     idProduct: number;
     refProduct: number;
-    imageUrl: string;
     productName: string;
     price: number;
     pointsPrice: number;
@@ -32,11 +28,10 @@ export class Product {
     quantity: number;
     ratingProductsP: RatingProduct[];
     categoriesProduct?: CategoriesProduct | null;
-    images: ImageData[];
+    images: Image[];
   }) {
     this.idProduct = options.idProduct;
     this.refProduct = options.refProduct;
-    this.imageUrl = options.imageUrl;
     this.productName = options.productName;
     this.price = options.price;
     this.pointsPrice = options.pointsPrice;
@@ -64,15 +59,18 @@ export class CategoriesProduct {
   }
 }
 
+
 export class RatingProduct {
   id!: number;
   feedback!: string;
   score!: number;
 }
 
-export class ImageData {
+export class Image {
   id!: number;
-  name!: string;
-  type!: string;
-  imageData!: string;
+  imageUrl!: string;
+  constructor(id: number, imageUrl: string) {
+    this.id = id;
+    this.imageUrl = imageUrl;
+  }
 }

@@ -24,6 +24,7 @@ import { CategorieProductComponent } from './BackOffice/categorie-product/catego
 import { ShowProductComponent } from './FrontOffice/show-product/show-product.component';
 import { ListArchivedComponent } from './BackOffice/list-archived/list-archived.component';
 import { ListCategoriesComponent } from './BackOffice/list-categories/list-categories.component';
+import { ListImgsComponent } from './BackOffice/list-imgs/list-imgs.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ListCategoriesComponent } from './BackOffice/list-categories/list-categ
     ShowProductComponent,
     ListArchivedComponent,
     ListCategoriesComponent,
+    ListImgsComponent,
   ],
   imports: [
     CommonModule,
