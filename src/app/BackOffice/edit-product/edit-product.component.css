@@ -1,4 +1,67 @@
-.selected {
-    border: 2px solid blue; /* Couleur et style du contour */
+
+  
+  /* Style pour mettre en surbrillance l'image sélectionnée */
+  .image-item.selected img {
+    transform: scale(1.1); /* Agrandit légèrement l'image sélectionnée */
   }
+  /* Style pour le cadre de sélection */
+.image-item.selected {
+    border: 2px solid #007bff; /* Couleur bleue pour le cadre de sélection */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre douce pour le cadre de sélection */
+  }
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .image-item {
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    width: 200px; /* Définir une largeur fixe pour chaque image */
+  }
+  
+  .image-item .img-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 3px solid transparent; /* Contour initial transparent */
+    transition: border-color 0.3s ease; /* Transition du contour */
+  }
+  
+  .image-item:hover .img-thumbnail {
+    border-color: blue; /* Couleur du contour au survol */
+  }
+  
+  .image-item .content-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .image-item:hover .content-overlay {
+    opacity: 1;
+  }
+  
+  .image-item .content-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .image-item:hover .content-details {
+    opacity: 1;
+  }
+  
   

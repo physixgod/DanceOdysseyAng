@@ -9,75 +9,56 @@
                 <div class="card-body">
                   <h5 class="card-title">Edit Product</h5>
                   <form *ngIf="product" (ngSubmit)="saveChanges()" #editForm="ngForm">
-               
-
                     <!-- Product Name -->
                     <div class="mb-3">
                       <label for="productName">Product Name</label>
                       <input type="text" class="form-control" [(ngModel)]="product.productName" name="productName" id="productName" />
                     </div>
-
                     <!-- Price -->
                     <div class="mb-3">
                       <label for="price">Price</label>
                       <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id="price" />
                     </div>
-
                     <!-- Description -->
                     <div class="mb-3">
                       <label for="description">Description</label>
                       <textarea class="form-control" [(ngModel)]="product.description" name="description" id="description"></textarea>
                     </div>
-
                     <!-- Quantity -->
                     <div class="mb-3">
                       <label for="quantity">Quantity</label>
                       <input type="number" class="form-control" [(ngModel)]="product.quantity" name="quantity" id="quantity" />
                     </div>
-
                     <!-- Date Publication -->
                     <div class="mb-3">
                       <label for="datePublication">Date Publication</label>
                       <input type="date" class="form-control" [(ngModel)]="product.datePublication" name="datePublication" id="datePublication" />
                     </div>
-
                     <!-- Points Price -->
                     <div class="mb-3">
                       <label for="pointsPrice">Points Price</label>
                       <input type="number" class="form-control" [(ngModel)]="product.pointsPrice" name="pointsPrice" id="pointsPrice" />
                     </div>
-
                     <!-- Model -->
                     <div class="mb-3">
                       <label for="model">Model</label>
                       <input type="text" class="form-control" [(ngModel)]="product.model" name="model" id="model" />
                     </div>
-
-                    <!-- Select Image -->
+                   
+                    <!-- Product Images -->
                     <div class="mb-3">
+                      <label>Product Images</label>
+                      <div class="image-container">
+                        <div class="image-item" *ngFor="let image of product?.images" (click)="onImageSelected(image)" [class.selected]="image === selectedImage">
+                          <img [src]="image.imageUrl" alt="Product Image" class="img-thumbnail">
+                        </div>
+                      </div>
+                    </div>
+                     <!-- Select Image -->
+                     <div class="mb-3">
                       <label for="image">Select Image</label>
                       <input type="file" class="form-control" (change)="onFileSelected($event)" />
                     </div>
-                    
-                  <div class="layout-wrapper layout-content-navbar">
-  <!-- Autres éléments de votre mise en page -->
-  <div class="row mb-3">
-    <div class="col">
-      <h5>Product Images</h5>
-      <div class="image-container">
-        <div class="image-item" *ngFor="let image of product?.images" 
-        (click)="onImageSelected(image)" 
-        [class.selected]="image === selectedImage">
-     <img [src]="image.imageUrl" alt="Product Image" class="img-thumbnail">
-   </div>
-   
-      </div>
-    </div>
-  </div>
-  <!-- Autres éléments de votre mise en page -->
-</div>
-
-                    
                     <!-- Save Button -->
                     <div class="row justify-content-end">
                       <div class="col-sm-10">
