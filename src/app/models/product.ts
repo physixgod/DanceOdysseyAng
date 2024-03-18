@@ -69,8 +69,11 @@ export class RatingProduct {
 export class Image {
   id!: number;
   imageUrl!: string;
+  isSelected?: boolean;
+
   constructor(id: number, imageUrl: string) {
     this.id = id;
     this.imageUrl = imageUrl;
+   
   }
 }

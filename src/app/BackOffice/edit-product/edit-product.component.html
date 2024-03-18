@@ -9,11 +9,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Edit Product</h5>
                   <form *ngIf="product" (ngSubmit)="saveChanges()" #editForm="ngForm">
-                    <!-- Reference -->
-                    <div class="mb-3">
-                      <label for="refProduct">Reference</label>
-                      <input type="number" class="form-control" [(ngModel)]="product.refProduct" name="refProduct" id="refProduct" />
-                    </div>
+               
 
                     <!-- Product Name -->
                     <div class="mb-3">
@@ -62,20 +58,28 @@
                       <label for="image">Select Image</label>
                       <input type="file" class="form-control" (change)="onFileSelected($event)" />
                     </div>
+                    
+                  <div class="layout-wrapper layout-content-navbar">
+  <!-- Autres éléments de votre mise en page -->
+  <div class="row mb-3">
+    <div class="col">
+      <h5>Product Images</h5>
+      <div class="image-container">
+        <div class="image-item" *ngFor="let image of product?.images" 
+        (click)="onImageSelected(image)" 
+        [class.selected]="image === selectedImage">
+     <img [src]="image.imageUrl" alt="Product Image" class="img-thumbnail">
+   </div>
+   
+      </div>
+    </div>
+  </div>
+  <!-- Autres éléments de votre mise en page -->
+</div>
 
-                    <!-- Product Images -->
-                    <div class="row">
-                      <div class="col">
-                        <h5>Product Images</h5>
-                        <div class="form-check" *ngFor="let image of product?.images">
-                          <input class="form-check-input" type="checkbox" [id]="'image' + image.id" (change)="onImageSelected(image)">
-                          <label class="form-check-label" [for]="'image' + image.id">{{ image.imageUrl }}</label>
-                        </div>
-                      </div>
-                    </div>
-
+                    
                     <!-- Save Button -->
-                    <div class="row justify-content-end mt-3">
+                    <div class="row justify-content-end">
                       <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Save Product</button>
                       </div>
