@@ -7,7 +7,6 @@ import { AddCompetitionComponent } from './BackOffice/add-competition/add-compet
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
-import {JuryListComponent} from './BackOffice/addjury/jurylist.component';
 import { GetjuriesComponent } from './BackOffice/getjuries/getjuries.component';
 import { CompetitionDetailsComponent } from './BackOffice/competition-details/competition-details.component';
 import { JuryaffectationComponent } from './BackOffice/juryaffectation/juryaffectation.component';
@@ -15,6 +14,7 @@ import { JudgingCriteriaComponent } from './BackOffice/judging-criteria/judging-
 import { ShowaffectedjuriesComponent } from './BackOffice/showaffectedjuries/showaffectedjuries.component';
 import { ShowAprrovedJuriesComponent } from './BackOffice/show-aprroved-juries/show-aprroved-juries.component';
 import { FilterPipe } from './filter.pipe';
+import { RegisterjuryComponent } from './registerjury/registerjury.component';
 
 
 
@@ -31,7 +31,7 @@ const routes: Routes = [
   ]
 },
 {
-  path:"registerjury",component:JuryListComponent
+  path:"registerjury",component:RegisterjuryComponent
 },
 {
   path:"admin",
@@ -41,14 +41,11 @@ const routes: Routes = [
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
     { path:'jurieslist',component:GetjuriesComponent},
-    { path: 'competitions', component: CompetitionDetailsComponent },
+    { path: 'competitionsmanaging', component: CompetitionDetailsComponent },
     { path:'jurieslistaffectation/:competitionId', component:JuryaffectationComponent },
     {path:'showAffectedJuries/:competitionId',component:ShowaffectedjuriesComponent},
     {path:'ApprovedJuries',component:ShowAprrovedJuriesComponent},
-    { 
-      path: 'judgingcreteriaaffectation/:competitionId', 
-      component: JudgingCriteriaComponent 
-    }
+    { path: 'judgingcreteriaaffectation/:competitionId',component: JudgingCriteriaComponent},
     
 
     

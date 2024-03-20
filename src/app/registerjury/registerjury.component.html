@@ -1,4 +1,5 @@
-<div class="jury-registration-container">
+<div class="content-wrapper">
+  <div class="jury-registration-container">
     <h2 class="heading">Add New Jury</h2>
     <div class="form-wrapper">
       <form (ngSubmit)="addJury()" class="jury-registration-form">
@@ -6,36 +7,49 @@
           <label for="firstName">First Name:</label>
           <input type="text" id="firstName" name="firstName" [(ngModel)]="juryManager.firstName" required>
         </div>
+
         <div class="form-group">
           <label for="lastName">Last Name:</label>
           <input type="text" id="lastName" name="lastName" [(ngModel)]="juryManager.lastName" required>
         </div>
+
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" [(ngModel)]="juryManager.email" required>
         </div>
+
         <div class="form-group">
           <label for="password">Password:</label>
           <input type="password" id="password" name="password" [(ngModel)]="juryManager.password" required>
         </div>
+
         <div class="form-group">
           <label for="telNumber">Telephone Number:</label>
           <input type="tel" id="telNumber" name="telNumber" [(ngModel)]="juryManager.telNumber" required>
         </div>
+
         <div class="form-group">
           <label for="expertiseArea">Dancing Expertise:</label>
           <input type="text" id="expertiseArea" name="expertiseArea" [(ngModel)]="juryManager.expertiseArea" required>
         </div>
+
         <div class="form-group">
           <label for="diploma">Diploma in Dance:</label>
           <input type="text" id="diploma" name="diploma" [(ngModel)]="juryManager.diploma" required>
         </div>
+
         <div class="form-group">
           <label for="archived">Archived:</label>
           <input type="checkbox" id="archived" name="archived" [(ngModel)]="juryManager.archived">
         </div>
+
+        <div class="form-group">
+          <label for="image">Image:</label>
+          <input type="file" id="image" name="image" (change)="onFileSelected($event)">
+        </div>
+
         <button type="submit">Add Jury</button>
       </form>
     </div>
   </div>
-  
+</div>

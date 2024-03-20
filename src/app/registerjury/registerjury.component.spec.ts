@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JurylistComponent } from './jurylist.component';
+import { RegisterjuryComponent } from './registerjury.component';
 
-describe('JurylistComponent', () => {
-  let component: JurylistComponent;
-  let fixture: ComponentFixture<JurylistComponent>;
+describe('RegisterjuryComponent', () => {
+  let component: RegisterjuryComponent;
+  let fixture: ComponentFixture<RegisterjuryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JurylistComponent ]
+      declarations: [ RegisterjuryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(JurylistComponent);
+    fixture = TestBed.createComponent(RegisterjuryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JuryManager } from 'src/app/models/jury';
 import { JuryService } from 'src/app/services/jury.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-juryaffectation',
@@ -11,9 +13,6 @@ import { JuryService } from 'src/app/services/jury.service';
 export class JuryaffectationComponent implements OnInit {
   searchName: string = '';
   competitionId!: number; // Variable to store the competition ID
-
-
-
   juries!: JuryManager[];
 
   constructor(
@@ -25,20 +24,48 @@ export class JuryaffectationComponent implements OnInit {
     // Retrieve the competition ID from the route parameters
     this.route.params.subscribe(params => {
       this.competitionId = params['competitionId'];
-      console.log(this.competitionId); // Move the console.log here
       this.getAlljuries(); // Call getAlljuries method
     });
   }
 
   getAlljuries() {
     // Call the service method to fetch all juries
-    this.juryService.showNotAffectedJuries(this.competitionId).subscribe(
-      (data) => {
-        this.juries = data;
-        console.log(this.juries);
+    this.juryService.showNotAffectedJuries(this.competitionId).pipe(
+      catchError(error => {
+        console.error('Error loading juries:', error);
+        return of([]);
+      })
+    ).subscribe(
+      (juries: JuryManager[]) => {
+        this.juries = juries;
+        this.loadImagesForAllJuries();
       },
       (err) => {
-        console.log("ERROR WHILE FETCHING Juries LIST ");
+        console.error("ERROR WHILE FETCHING Juries LIST ");
+      }
+    );
+  }
+
+  loadImagesForAllJuries(): void {
+    this.juries.forEach(jury => {
+      this.loadImageForJury(jury);
+    });
+  }
+
+  loadImageForJury(jury: JuryManager): void {
+    this.juryService.getImageForJury(jury.juryID).subscribe(
+      (response: any) => {
+        if (response instanceof Blob) {
+          const imageUrl = URL.createObjectURL(response);
+          jury.imageUrl = imageUrl;
+        } else {
+          console.error(`Image response is not a Blob for jury ${jury.juryID}`);
+          jury.imageUrl = ''; // Set a default image or empty string
+        }
+      },
+      error => {
+        console.error(`Error loading image for jury ${jury.juryID}:`, error);
+        jury.imageUrl = ''; // Set a default image or empty string
       }
     );
   }
@@ -50,30 +77,30 @@ export class JuryaffectationComponent implements OnInit {
         console.log("Jury added to the competition successfully.");
         // Optionally, you can update the juries list after adding the jury to the competition
         this.getAlljuries();
-        window.location.reload();
       },
       (err) => {
         console.log("Error while adding jury to the competition: ", err);
       }
     );
   }
+
   onSearch(): void {
     console.log('Search Name:', this.searchName);
-  
+
     if (this.searchName.trim() === '') {
-      // If the search input is empty, fetch all competitions
+      // If the search input is empty, fetch all juries
       this.getAlljuries();
     } else {
-      // If there's a search input, search competitions by name
-      this.juryService.searchJuryByName(this.searchName).subscribe(
-        (data: JuryManager[]) => {
-          this.juries = data;
+      // If there's a search input, search juries by name
+      this.juryService.getJuriesByName(this.competitionId, this.searchName).subscribe(
+        (juries: JuryManager[]) => {
+          this.juries = juries;
+          this.loadImagesForAllJuries(); // Load images for searched juries
         },
-        (error) => {
-          console.error(error);
+        (err) => {
+          console.log("ERROR WHILE FETCHING Juries LIST ");
         }
       );
-   
     }
   }
 }

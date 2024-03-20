@@ -1,17 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { JuryManager } from '../models/jury';
 import { Competition } from '../models/competition';
+import { catchError,map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JuryService{
-    private baseURL = "http://localhost:8086/jury/"
-    constructor(private http : HttpClient) { }
-    addJury(j:JuryManager):Observable<JuryManager[]>{
-        return this.http.post<JuryManager[]>(this.baseURL+"addJury",j)
+export class JuryService {
+  private baseURL = "http://localhost:8086/jury/";
+
+  constructor(private http: HttpClient) { }
+
+  getImageForJury(id: number): Observable<Blob> {
+    const url = `${this.baseURL}/${id}/image`; // Update the URL to match the API endpoint for fetching jury images
+    return this.http.get(url, { responseType: 'blob' })
+      .pipe(
+        catchError((error: any) => {
+          console.error(`An error occurred: ${error.message}`);
+          return throwError('Image retrieval failed');
+        })
+      );
+  }
+  
+  
+
+  uploadImage(file: File, juryId: number): Observable<string> {
+    const formData: FormData = new FormData();
+    formData.append('image', file, file.name);
+  
+    return this.http.post<any>(`${this.baseURL}uploadImage/${juryId}`, formData, { responseType: 'text' as 'json' }).pipe(
+      catchError((error: any) => this.handleError(error))
+    );
+  }
+  
+  
+    addJury(j:JuryManager):Observable<JuryManager>{
+        return this.http.post<JuryManager>(this.baseURL+"addJury",j)
       }
       getAllJuries(): Observable<JuryManager[]> {
         return this.http.get<JuryManager[]>(this.baseURL + "getAll");
@@ -44,6 +70,28 @@ export class JuryService{
       searchJuryByName(name: string): Observable<JuryManager[]> {
         return this.http.get<JuryManager[]>(`${this.baseURL}SearchJuryByName/${name}`);
       }
+      getJuriesByName(idCompetition: number, name: string): Observable<JuryManager[]> {
+        return this.http.get<JuryManager[]>(`${this.baseURL}SearchJuries/${idCompetition}/${name}`);
+      }
+      private handleError(error: any): Observable<never> {
+        console.error('An error occurred:', error);
+    
+        if (error instanceof HttpErrorResponse) {
+          console.error(`Status: ${error.status}, ${error.statusText}`);
+          console.error('Response body:', error.error);
+    
+          const errorMessage = error.error && error.error.error ? error.error.error : 'Something went wrong';
+    
+          return throwError(errorMessage);
+        }
+    
+        return throwError('Something went wrong');
+      }
       
+      uploadExcelFile(competitionId: number, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<Competition>(`${this.baseURL}${competitionId}/uploadExcel`, formData);
   }
-  
+}

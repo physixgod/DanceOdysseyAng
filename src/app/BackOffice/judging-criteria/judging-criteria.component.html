@@ -1,17 +1,18 @@
-<!-- judging-criteria.component.html -->
-
-<div *ngFor="let competition of competitions" class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{ competition.competitionName }}</h5>
-      <p class="card-text">
-        <strong>Dance Category:</strong> {{ competition.danceCategory }}<br>
-        <strong>Start Date:</strong> {{ competition.startDate | date }}<br>
-        <strong>End Date:</strong> {{ competition.endDate | date }}<br>
-        <strong>Location:</strong> {{ competition.location }}<br>
-        <strong>Description:</strong> {{ competition.description }}
-      </p>
-      <!-- Add the button "Put Criteria File" here -->
-      <button class="btn btn-primary" >Put Criteria File</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">  
+      <h2>Upload Excel File</h2>
+      <input type="file" (change)="onFileSelected($event)">
     </div>
   </div>
-  
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <button class="btn btn-primary me-2" (click)="onSubmit()">
+        <i class="bx bx-save me-1"></i> Save
+      </button>
+      <button class="btn btn-secondary" [routerLink]="['/admin', 'competitionsmanaging']">
+        <i class="bx bx-arrow-back me-1"></i> Go Back
+      </button>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JuryManager } from 'src/app/models/jury';
 import { JuryService } from 'src/app/services/jury.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-showaffectedjuries',
@@ -21,23 +23,49 @@ export class ShowaffectedjuriesComponent implements OnInit {
     // Retrieve the competition ID from the route parameters
     this.route.params.subscribe(params => {
       this.competitionId = params['competitionId'];
-      console.log(this.competitionId); // Move the console.log here
       this.getAllAffectedJuries(); // Call getAllAffectedJuries method
     });
   }
 
   getAllAffectedJuries() {
     // Call the service method to fetch all juries affected by the competition
-    this.juryService.showAffectedJuries(this.competitionId).subscribe(
-      (data) => {
-        this.juries = data;
-        console.log(this.juries);
+    this.juryService.showAffectedJuries(this.competitionId).pipe(
+      catchError(error => {
+        console.error('Error loading affected juries:', error);
+        return of([]);
+      })
+    ).subscribe(
+      (juries: JuryManager[]) => {
+        this.juries = juries;
+        this.loadImagesForAllJuries();
       },
       (err) => {
-        console.log("ERROR WHILE FETCHING Affected Juries LIST ");
+        console.error("ERROR WHILE FETCHING Affected Juries LIST ");
       }
     );
   }
 
-  
+  loadImagesForAllJuries(): void {
+    this.juries.forEach(jury => {
+      this.loadImageForJury(jury);
+    });
+  }
+
+  loadImageForJury(jury: JuryManager): void {
+    this.juryService.getImageForJury(jury.juryID).subscribe(
+      (response: any) => {
+        if (response instanceof Blob) {
+          const imageUrl = URL.createObjectURL(response);
+          jury.imageUrl = imageUrl;
+        } else {
+          console.error(`Image response is not a Blob for jury ${jury.juryID}`);
+          jury.imageUrl = ''; // Set a default image or empty string
+        }
+      },
+      error => {
+        console.error(`Error loading image for jury ${jury.juryID}:`, error);
+        jury.imageUrl = ''; // Set a default image or empty string
+      }
+    );
+  }
 }

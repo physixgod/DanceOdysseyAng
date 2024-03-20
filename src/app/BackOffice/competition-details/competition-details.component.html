@@ -28,9 +28,10 @@
                 <button class="btn btn-primary mb-2" (click)="redirectToPage1(competition.competitionID)">
                   <i class="bx bx-user-plus me-1 text-white"></i> Set Jury
                 </button>
-                <button class="btn btn-primary mb-2" [routerLink]="['/admin', 'judgingcreteriaaffectation']">
-                  <i class="bx bx-badge-check me-1 text-white"></i> Judging Criteria
-                </button>
+                <button class="btn btn-primary mb-2"
+        [routerLink]="['/admin', 'judgingcreteriaaffectation', competition.competitionID]">
+  <i class="bx bx-badge-check me-1 text-white"></i> Judging Criteria
+</button>
                 <button class="btn btn-primary mb-2" (click)="redirectToPage2(competition.competitionID)">
                   <i class="bx bx-user-plus me-1 text-white"></i> Show Juries
                 </button>
