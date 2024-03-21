@@ -1,0 +1,43 @@
+
+<div class="hero overlay" style="background-image: url('/assets/images/competition.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mx-auto text-center">
+        <div class="quiz-container" *ngIf="questions.length > 0 && !quizSubmitted">
+          <div *ngFor="let question of questions; let i = index">
+            <div class="question-box" *ngIf="currentQuestionIndex === i">
+              <h3>{{ question.questionText }}</h3>
+              <ul>
+                <li>
+                  <input type="radio" [(ngModel)]="userAnswers[i]" [value]="question.wronganswer1" name="question{{ i }}">
+                  {{ question.wronganswer1 }}
+                </li>
+                <li>
+                  <input type="radio" [(ngModel)]="userAnswers[i]" [value]="question.wronganswer2" name="question{{ i }}">
+                  {{ question.wronganswer2 }}
+                </li>
+                <li>
+                  <input type="radio" [(ngModel)]="userAnswers[i]" [value]="question.correctAnswer" name="question{{ i }}">
+                  {{ question.correctAnswer }}
+                </li>
+              </ul>
+              <div *ngIf="!isLastQuestion && timer > 0">
+                <p>Time left: {{ timer }}</p>
+                <button class="btn btn-primary" (click)="nextQuestion()">Next</button>
+              </div>
+              <div *ngIf="isLastQuestion">
+                <button class="btn btn-success" (click)="submitQuiz()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result-container" *ngIf="quizSubmitted">
+          <div class="result-box">
+            <h3>Your Score:</h3>
+            <p>{{ score }}/{{ questions.length }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

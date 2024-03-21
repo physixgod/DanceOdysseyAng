@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competition Flyer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .flyer {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .competition-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .competition-date {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .competition-description {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .competition-image {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background-color: #207bb3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flyer" id="contentToConvert">
+    <div class="header">
+      <div class="competition-name">Awesome Competition</div>
+      <div class="competition-date">Date: March 20, 2024</div>
+    </div>
+
+    <div class="competition-description">
+      <p>Welcome to the most exciting competition of the year! Join us for a day of fun, challenges, and amazing prizes.</p>
+      <p>Highlights:</p>
+      <ul>
+        <li>Interactive workshops</li>
+        <li>Thrilling contests</li>
+        <li>Networking opportunities</li>
+      </ul>
+    </div>
+
+
+
+    <div class="footer">
+      <p>Follow us on social media:</p>
+      <p>#AwesomeCompetition</p>
+      <a  class="download-btn" (click)="downloadPDF()">Download Flyer (PDF)</a>
+    </div>
+  </div>
+
+</body>
+</html>

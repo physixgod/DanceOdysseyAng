@@ -29,6 +29,10 @@ export class EventService{
         // Note: If your backend API expects a PUT request for deletion, make sure it returns an empty response.
         return this.http.put<void>(`${this.baseURL}DeleteEvent/${id}`, {});
       }
+      getEventsNearby(yourLatitude: number, yourLongitude: number, maxDistance: number): Observable<Event[]> {
+        return this.http.get<Event[]>(`${this.baseURL}nearbyEvents?yourLatitude=${yourLatitude}&yourLongitude=${yourLongitude}&maxDistance=${maxDistance}`);
+      }
+  
       
       
 

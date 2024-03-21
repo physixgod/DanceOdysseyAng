@@ -11,8 +11,14 @@
 <div class="container site-section">
   <div class="row">
     <div class="col-6 title-section">
-      <!-- Add any title or header if needed -->
+      <h2 class="title">Events Near Me</h2>
+      <div class="form-group">
+        <label for="maxDistance">Max Distance (in meters):</label>
+        <input type="number" class="form-control" id="maxDistance" [(ngModel)]="maxDistance" name="maxDistance" placeholder="Enter max distance">
+      </div>
+      <button class="btn btn-primary" (click)="fetchEventsNearMe()">Search</button>
     </div>
+   
   </div>
   <div class="row">
     <div class="col-lg-4 mb-4" *ngFor="let event of events">

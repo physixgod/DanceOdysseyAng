@@ -17,6 +17,9 @@ import { UpdateCompetitionComponent } from './BackOffice/update-competition/upda
 import { MyCompetitionsComponent } from './FrontOffice/my-competitions/my-competitions.component';
 import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
+import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
+import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
+
 
 const routes: Routes = [
 { path:"",
@@ -29,7 +32,8 @@ const routes: Routes = [
     {path:'competition/:id',component:ReadmoreCompetitionsComponent},
     {path:'myCompetitions/:id',component:MyCompetitionsComponent},
     {path:'MyEvents',component:MyEventsComponent},
-    {path:'upgradevent/:id',component:UpgradeEventComponent}
+    {path:'upgradevent/:id',component:UpgradeEventComponent},
+    {path:'trivia',component:TriviaComponent}
   ]
 },{
   path:'test',component:TestComponent
@@ -44,8 +48,9 @@ const routes: Routes = [
     { path: 'archivecometitions',component:ArchiveCompetitionsComponent},
     { path: 'leaderboard/:id', component: CompetitionRanksComponent },
     {path:'competitionDancers/:id', component:ShowCompetitionsDancersComponent},
-    {path:'updateCompetition/:id',component:UpdateCompetitionComponent}
-
+    {path:'updateCompetition/:id',component:UpdateCompetitionComponent},
+    {path:'CompetitionPDF/:id',component:CompetitionPDFComponent},
+    
     
   ]
 }

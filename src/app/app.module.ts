@@ -27,6 +27,9 @@ import { UpdateCompetitionComponent } from './BackOffice/update-competition/upda
 import { MyCompetitionsComponent } from './FrontOffice/my-competitions/my-competitions.component';
 import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
+import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
+import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event
     MyCompetitionsComponent,
     MyEventsComponent,
     UpgradeEventComponent,
+    CompetitionPDFComponent,
+    TriviaComponent,
   ],
   imports: [
     BrowserModule,
