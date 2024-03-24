@@ -23,9 +23,10 @@
       status: '',
       competitionID: 0,
       participations: [],
-      jurymanagers: []
+      jurymanagers: [],
+      competitionImage: ''
     };
-
+    uploadedImage: File | null = null;
     constructor(
       private route: ActivatedRoute,
       private competitionService: CompetitionService,
@@ -48,6 +49,7 @@
     }
 
     addCompetition(): void {
+      this.uploadCompetitionImage();
       this.competitionService.addNewCompetition(this.competition).subscribe(
         (data) => {
           console.log('DATA: ', data);
@@ -59,5 +61,23 @@
           console.error('Error adding competition:', error);
         }
       );
+    }
+    uploadCompetitionImage() {
+      if (this.uploadedImage) {
+        this.competitionService.updateCompetitionImage(this.competition.competitionID,this.uploadedImage).subscribe(
+          (data) => {
+            console.log("Competition Image Uploaded:", data);
+          },
+          (error) => {
+            console.error("Error uploading competition image:", error);
+          }
+        );
+      } else {
+        alert("Please select an image to upload.");
+      }
+    }
+  
+    onFileSelected(event: any) {
+      this.uploadedImage = event.target.files[0];
     }
   }

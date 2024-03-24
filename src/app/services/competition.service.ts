@@ -45,4 +45,13 @@ return this.http.get<Dancer[]>(`${this.baseURL}getCompetitionDancers/${idCompeti
 getMyCompetitions(idDancer: number): Observable<Map<string, string>> {
   return this.http.get<Map<string, string>>(`${this.baseURL}getMyCompetitions/${idDancer}`);
 }
+getCompetitionImage(id: number): Observable<string> {
+  return this.http.get(`${this.baseURL}getCompetitionImage/${id}`, { responseType: 'text' });
+}
+updateCompetitionImage(id: number, image: File): Observable<Competition> {
+  const formData: FormData = new FormData();
+  formData.append('image', image, image.name);
+
+  return this.http.post<Competition>(`${this.baseURL}uploadCompetitionImage/image/${id}`, formData);
+}
 }

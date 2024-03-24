@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Competition } from 'src/app/models/competition';
 import { CompetitionService } from 'src/app/services/competition.service';
 
@@ -7,29 +7,36 @@ import { CompetitionService } from 'src/app/services/competition.service';
   templateUrl: './list-competitions.component.html',
   styleUrls: ['./list-competitions.component.css']
 })
-export class ListCompetitionsComponent {
-  competitions ! : Competition[];
-  constructor(private competitionService : CompetitionService){}
+export class ListCompetitionsComponent implements OnInit {
+  competitions: Competition[] = [];
+  constructor(private competitionService: CompetitionService) {}
+  ngOnInit(): void {
+    this.getAllCompetitions();
+  }
+  getAllCompetitions(): void {
+    this.competitionService.getAllCompetitions().subscribe(
+      (data: Competition[]) => {
+        this.competitions = data;
+        this.fetchCompetitionImages();
+      },
+      (error) => {
+        console.error("Error fetching competition list:", error);
+      }
+    );
+  }
 
-
-ngOnInit(): void {
-  console.log("HELLO FROM COMPETITIONS")
-  this.AllCompetitions();
-
-}
-
-
-
-AllCompetitions(){
-
-  this.competitionService.getAllCompetitions().subscribe(
-    (data) =>{
-      this.competitions=data;
-      console.log(this.competitions)
-    },(err) =>{
-      console.log("ERROR WHILE FETCHING COMPETITION LIST ");
-    }
-  )
-}
+  fetchCompetitionImages(): void {
+    this.competitions.forEach((competition) => {
+      this.competitionService.getCompetitionImage(competition.competitionID).subscribe(
+        (imageUrl: string) => {
+          competition.competitionImage = imageUrl;
+        },
+        (error) => {
+          console.error("Error fetching competition image:", error);
+        }
+      );
+    });
+  }
+  
 
 }

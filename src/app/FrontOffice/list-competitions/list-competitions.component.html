@@ -17,9 +17,20 @@
         <div class="col-lg-4 mb-4" *ngFor="let competition of competitions">
             <div class="custom-media d-block">
                 <div class="img mb-4">
-                    <a href="single.html">
-                        <img src="/assets/images/cup.jpg" alt="Image" class="img-fluid" style="width: 400px; height: 400px;">
-                    </a>
+                  <a [routerLink]="['/competition', competition.competitionID]">
+                    <img *ngIf="competition.competitionImage" 
+                         [src]="competition.competitionImage" 
+                         alt="Competition Image" 
+                         class="img-fluid" 
+                         style="width: 400px; height: 400px;"
+                         >
+                    <!-- If no image URL available, display a placeholder image -->
+                    <img *ngIf="!competition.competitionImage" 
+                         src="/assets/images/cup.jpg" 
+                         alt="Image" 
+                         class="img-fluid" 
+                         style="width: 400px; height: 400px;">
+                </a>
                 </div>
                 <div class="text">
                     <span class="meta">{{competition.startDate}}</span>

@@ -15,7 +15,7 @@ import { ListCompetitionComponent } from './BackOffice/list-competition/list-com
 import { HttpClientModule } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { FormsModule } from '@angular/forms';
-import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
 import { TestComponent } from './test/test.component';
@@ -29,10 +29,11 @@ import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
-
+import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     AllTemplateBackComponent,
     FooterBackComponent,

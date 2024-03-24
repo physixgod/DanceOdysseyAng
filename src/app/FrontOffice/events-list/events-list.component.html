@@ -24,7 +24,19 @@
     <div class="col-lg-4 mb-4" *ngFor="let event of events">
       <div class="custom-media d-block">
         <div class="img mb-4">
-          <a [routerLink]="['/events', event.eventID]"><img src="/assets/images/eventimage.jpg" alt="Event Image" class="img-fluid"></a>
+          <a [routerLink]="['/events', event.eventID]">
+            <img *ngIf="event.eventImage" 
+                 [src]="event.eventImage" 
+                 alt="Event Image" 
+                 class="img-fluid" 
+                 style="width: 400px; height: 400px;">
+            <!-- If no image URL available, display a placeholder image -->
+            <img *ngIf="!event.eventImage" 
+                 src="/assets/images/eventimage.jpg" 
+                 alt="Image" 
+                 class="img-fluid" 
+                 style="width: 400px; height: 400px;">
+          </a>
         </div>
         <div class="text">
           <span class="meta">{{ event.startDate | date: 'mediumDate' }}</span>

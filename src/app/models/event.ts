@@ -10,7 +10,7 @@ export class Event {
     eventsMakers?: Dancer[];
     latitude? :number;  
     longitude?:number;   
-    
+    eventImage!:string;
   }
   
   export class User {

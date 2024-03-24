@@ -32,7 +32,15 @@ export class EventService{
       getEventsNearby(yourLatitude: number, yourLongitude: number, maxDistance: number): Observable<Event[]> {
         return this.http.get<Event[]>(`${this.baseURL}nearbyEvents?yourLatitude=${yourLatitude}&yourLongitude=${yourLongitude}&maxDistance=${maxDistance}`);
       }
-  
+      updateEventImage(id: number, image: File): Observable<Event> {
+        const formData: FormData = new FormData();
+        formData.append('image', image, image.name);
+    
+        return this.http.post<Event>(`${this.baseURL}uploadEventImage/image/${id}`, formData);
+      }
+      getEventImage(id: number): Observable<string> {
+        return this.http.get(`${this.baseURL}getEventImage/${id}`, { responseType: 'text' });
+      }
       
       
 

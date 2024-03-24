@@ -16,11 +16,14 @@ export class AddEventComponent {
     maxParticipants: 0,
     eventID: 0,
     description: '',
-    latitude:0,
-    longitude:0
+    latitude: 0,
+    longitude: 0,
+    eventImage: ''
   };
-
-  dancerId: number = 1; // Replace with the actual dancer ID, or get it dynamically
+  uploadedImage: File | null = null;
+  eventAdded: boolean = false;
+  eventId: number = 0; 
+  dancerId: number = 1;
   marker: any = null;
   circleMarker: any = null;
   collocationOffer: any = {}; //
@@ -35,8 +38,6 @@ export class AddEventComponent {
       navigator.geolocation.getCurrentPosition((position) => {
         const userLocation = [position.coords.latitude, position.coords.longitude];
         console.log('User Location:', userLocation);
-        
-        // Reverse geocoding to get the city name
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLocation[0]}&lon=${userLocation[1]}&zoom=18&addressdetails=1`)
           .then(response => response.json())
           .then(data => {
@@ -133,28 +134,48 @@ export class AddEventComponent {
 
 
 
+  onFileSelected(event: any) {
+    this.uploadedImage = event.target.files[0];
+  }
+
+  // Method to add event by dancer
   addEventByDancer() {
     const locationParts = this.event.location.split(',').map(part => part.trim());
-  
-  // Extract the city and street names from the location string
-  const city = locationParts[0];
-  const street = locationParts.slice(1).join(', '); // Join the remaining parts as the street name
-  
-  // Now you can use city and street as needed
-  console.log('City:', city);
-  console.log('Street:', street);
-  
+    const city = locationParts[0];
+    const street = locationParts.slice(1).join(', '); 
+    console.log('City:', city);
+    console.log('Street:', street);
+    
+    this.eventService.addEventByDancer(this.dancerId, this.event).subscribe(
+      (data) => {
+        console.log("Event Added Successfully:", data);
+        this.eventId = data.eventID;
+        this.eventAdded = true;
 
-  // Proceed with adding the event
-  this.eventService.addEventByDancer(this.dancerId, this.event).subscribe(
-    (data) => {
-      console.log("DATA: ", data);
-      alert("Event Added Successfully :)");
-      window.location.reload();
-    },
-    (error) => {
-      console.error(error);
+        // Upload event image after event addition
+        this.uploadEventImage();
+      },
+      (error) => {
+        console.error("Error Adding Event:", error);
+      }
+    );
+  }
+
+  // Method to upload event image
+  uploadEventImage() {
+    if (this.uploadedImage) {
+      this.eventService.updateEventImage(this.eventId, this.uploadedImage).subscribe(
+        (data) => {
+          console.log("Event Image Uploaded Successfully:", data);
+          alert("Event and Image Uploaded Successfully");
+          window.location.reload();
+        },
+        (error) => {
+          console.error("Error Uploading Event Image:", error);
+          alert("Error Uploading Event Image");
+          window.location.reload();
+        }
+      );
     }
-  );
-}
+  }
 }
