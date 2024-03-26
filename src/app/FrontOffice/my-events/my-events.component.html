@@ -24,7 +24,8 @@
               <th>Event Name</th>
               <th>Start Date</th>
               <th>Location</th>
-              <th>Max Participants</th>
+              
+              <th>Current Participants</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -33,7 +34,8 @@
               <td>{{ event.eventName }}</td>
               <td>{{ event.startDate | date:'medium' }}</td>
               <td>{{ event.location }}</td>
-              <td>{{ event.maxParticipants }}</td>
+            
+              <td>{{event.currentParticipants}}</td>
               <td>
                 <button class="btn btn-primary btn-sm" [routerLink]="['/upgradevent',event.eventID] "style="margin-right: 5px;">Update</button>
                 <button class="btn btn-primary btn-sm" (click)="deleteEvent(event.eventID)">Delete</button>

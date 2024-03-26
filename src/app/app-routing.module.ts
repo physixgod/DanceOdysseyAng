@@ -19,6 +19,7 @@ import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
+import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
     {path:'myCompetitions/:id',component:MyCompetitionsComponent},
     {path:'MyEvents',component:MyEventsComponent},
     {path:'upgradevent/:id',component:UpgradeEventComponent},
-    {path:'trivia',component:TriviaComponent}
+    {path:'trivia',component:TriviaComponent},
+    {path:'registerEvent/:id',component:RegisterEventComponent}
   ]
 },{
   path:'test',component:TestComponent
@@ -50,6 +52,7 @@ const routes: Routes = [
     {path:'competitionDancers/:id', component:ShowCompetitionsDancersComponent},
     {path:'updateCompetition/:id',component:UpdateCompetitionComponent},
     {path:'CompetitionPDF/:id',component:CompetitionPDFComponent},
+    
     
     
   ]

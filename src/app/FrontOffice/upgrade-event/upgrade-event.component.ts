@@ -20,7 +20,8 @@ export class UpgradeEventComponent implements OnInit {
     maxParticipants: 0,
     eventID: 0,
     description: '',
-    eventImage: ''
+    eventImage: '',
+    currentParticipants: 0
   };
   uploadedImage: File | null = null;
   marker: any = null;

@@ -18,7 +18,8 @@ export class AddEventComponent {
     description: '',
     latitude: 0,
     longitude: 0,
-    eventImage: ''
+    eventImage: '',
+    currentParticipants: 0
   };
   uploadedImage: File | null = null;
   eventAdded: boolean = false;

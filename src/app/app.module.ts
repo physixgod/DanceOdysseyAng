@@ -30,6 +30,7 @@ import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-
     UpgradeEventComponent,
     CompetitionPDFComponent,
     TriviaComponent,
+    RegisterEventComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,29 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <div *ngIf="event" class="event-details">
+            <div class="header">
+              <h1>{{ event.eventName }}</h1>
+              <p class="meta">Start Date: {{ event.startDate | date }}</p>
+              <p class="meta">Location: {{ event.location }}</p>
+              <p class="meta">Max Participants: {{ event.maxParticipants }}</p>
+              <p class="meta">Current Participants: {{ event.currentParticipants }}</p>
+            </div>
+  
+            <div class="additional-details">
+           <p><strong>Description:</strong> {{ event.description }}</p>           
+            </div>
+            <div *ngIf="registrationMessage" class="alert" [ngClass]="registrationMessage.includes('successfully') ? 'alert-success' : 'alert-danger'" role="alert">
+              {{ registrationMessage }}
+            </div>
+            <div class="actions">       
+              <button class="btn btn-primary" (click)="registerForEvent()">Register Now</button>
+            </div>
+            <div style="margin-top: 8px;"> <button [routerLink]="['/listeventsgit']" class="btn btn-primary">Back</button> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -11,6 +11,7 @@ export class Event {
     latitude? :number;  
     longitude?:number;   
     eventImage!:string;
+    currentParticipants!:number;
   }
   
   export class User {

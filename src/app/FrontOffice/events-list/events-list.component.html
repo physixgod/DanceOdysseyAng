@@ -42,7 +42,7 @@
           <span class="meta">{{ event.startDate | date: 'mediumDate' }}</span>
           <h3 class="mb-4"><a [routerLink]="['/events', event.eventID]">{{ event.eventName }}</a></h3>
           <p>{{ event.description }}</p>
-          <p><a [routerLink]="['/events', event.eventID]">Read more</a></p>
+          <p><a [routerLink]="['/registerEvent', event.eventID]">Read more</a></p>
         </div>
       </div>
     </div>

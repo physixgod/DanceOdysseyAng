@@ -41,7 +41,9 @@ export class EventService{
       getEventImage(id: number): Observable<string> {
         return this.http.get(`${this.baseURL}getEventImage/${id}`, { responseType: 'text' });
       }
-      
+      registerDancerEvent(idDancer: number, idEvent: number): Observable<boolean> {
+        return this.http.post<boolean>(`${this.baseURL}registerDancerEvent/${idDancer}/${idEvent}`, null);
+      }
       
 
   }
