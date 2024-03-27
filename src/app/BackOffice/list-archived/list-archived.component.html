@@ -1,43 +1,55 @@
+<head>
+  <!-- Autres balises head... -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
 
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      <div class="layout-page">
-        <div class="content-wrapper">
-          <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Product Name</th>
-                    <th>Reference</th>
-                    <th>Price</th>
-                    <th>Points Price</th>
-                    <th>Model</th>
-                    <th>Date Publication</th>
-                    <th>Quantity</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of products">
-               
-                    <td>{{ product.productName }}</td>
-                    <td>{{ product.refProduct }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.pointsPrice }}</td>
-                    <td>{{ product.model }}</td>
-                    <td>{{ product.datePublication | date: 'medium' }}</td>
-                    <td>{{ product.quantity }}</td>
-                    <td>
-                      <!-- Add any additional actions for archived products if needed -->
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  <div class="layout-container">
+    <div class="layout-page">
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Picture</th>
+                  <th>Product Name</th>
+                  <th>Reference</th>
+                  <th>Price</th>
+                  <th>Points Price</th>
+                  <th>Model</th>
+                  <th>Publication date</th>
+                  <th>Quantity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Boucle pour afficher les produits -->
+                <tr *ngFor="let product of products">
+                  <td class="product-cell">
+                    <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Image du produit" class="product-image">
+                  </td>
+                  <td>{{ product.productName }}</td>
+                  <td>{{ product.refProduct }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.pointsPrice }}</td>
+                  <td>{{ product.model }}</td>
+                  <td>{{ product.datePublication | date: 'short' }}</td>
+                  <td>{{ product.quantity }}</td>
+                  <td>
+                    <div class="button-group">
+                      <a class="btn btn-primary btn-sm" (click)="unarchiveProduct(product.idProduct)" title="Unarchive">
+                        <i class="fas fa-undo"></i> Unarchive <!-- Utilisation d'une icône représentant le désarchivage -->
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

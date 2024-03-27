@@ -36,21 +36,23 @@
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>
-                  <th>Image</th>
+                  <th>Pictures</th>
                   <th>Product Name</th>
                   <th>Reference</th>
                   <th>Price</th>
                   <th>Points Price</th>
                   <th>Model</th>
-                  <th>Date Publication</th>
+                  <th>Publication date</th>
                   <th>Quantity</th>
                   <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let product of products">
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Boucle pour afficher les produits -->
+              <tr *ngFor="let product of products">
+                
                   <td (click)="onSelectProduct(product.idProduct)" class="product-cell">
-                    <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
+                      <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Image du produit" class="product-image">
                   </td>
                   <td>{{ product.productName }}</td>
                   <td>{{ product.refProduct }}</td>
@@ -60,22 +62,17 @@
                   <td>{{ product.datePublication | date: 'short' }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>
-                    <div class="button-group">
-                      <a class="btn btn-primary btn-sm" routerLink="/admin/edit-product/{{ product.idProduct }}" title="Edit">
-                        <i class="fas fa-edit"></i> Edit
-                      </a>
-                      <br>
-                      <button class="btn btn-danger btn-sm" (click)="archiveProduct(product.idProduct)" title="Archive">
-                        <i class="fas fa-archive"></i> Archive
-                      </button>
-                    </div>
+                      <div class="button-group">
+                          <a class="btn btn-primary btn-sm" routerLink="/admin/edit-product/{{ product.idProduct }}" title="Modifier">
+                              <i class="fas fa-edit"></i> Edit
+                          </a>
+                          <br>
+                          <button class="btn btn-danger btn-sm" (click)="archiveProduct(product.idProduct)" title="Archiver">
+                              <i class="fas fa-archive"></i> Archiver
+                          </button>
+                      </div>
                   </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+              </tr>
+          </tbody>
+      </table>
   </div>
-</div>

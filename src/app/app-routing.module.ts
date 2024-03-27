@@ -1,3 +1,11 @@
+import { SideBarComponent } from './FrontProduct/side-bar/side-bar.component';
+import { SidebarBackComponent } from './BackOffice/sidebar-back/sidebar-back.component';
+import { CheckoutComponent } from './FrontProduct/checkout/checkout.component';
+import { CartComponent } from './FrontProduct/cart/cart.component';
+import { ViewProductComponent } from './FrontProduct/view-product/view-product.component';
+import { ProductDetailComponent } from './FrontProduct/product-detail/product-detail.component';
+import { AlltemplateFrontProductComponent } from './FrontProduct/alltemplate-front-product/alltemplate-front-product.component';
+import { ShowProductComponent } from './FrontProduct/show-product/show-product.component';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
@@ -20,8 +28,31 @@ const routes: Routes = [
   children:[
     {path:'homepage', component: HomeComponent },
     {path:'competitions', component:ListCompetitionsComponent},
+
   ]
 },
+{
+  path:"product",
+  component: AlltemplateFrontProductComponent,
+  children: [
+    {path:'detailproduct',component:ProductDetailComponent},
+    {path:'viewproduct/:id',component:ViewProductComponent},
+    {path:'cart',component:CartComponent},
+    {path:'checkout',component:CheckoutComponent},
+    {path:'show',component:ShowProductComponent},
+    {path:'side',component:SideBarComponent},
+
+
+
+    
+
+  ]
+  
+
+
+},
+
+
 {
   path:"admin",
   component: AllTemplateBackComponent,
@@ -39,9 +70,12 @@ const routes: Routes = [
 
 
 
+
     
   ]
-}
+},
+
+
 ];
 
 @NgModule({

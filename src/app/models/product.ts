@@ -13,6 +13,8 @@ export class Product {
   ratingProductsP: RatingProduct[] = [];
   categoriesProduct?: CategoriesProduct | null;
   images: Image[] = [];
+  today!: string; // Ajoutez la propriété today
+
 
   constructor(options: {
     idProduct: number;

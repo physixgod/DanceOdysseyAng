@@ -1,34 +1,44 @@
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      <div class="layout-page">
-        <div class="content-wrapper">
-          <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="row mb-5">
-              <div class="col-md-8 offset-md-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <h5 class="card-title">Ajouter une Catégorie avec des Sous-catégories</h5>
-                    <form (ngSubmit)="createCategoryWithSubcategories()">
-                      <!-- Type de Catégorie -->
-                      <div class="mb-3">
-                        <label for="categoryType">Type de Catégorie :</label>
-                        <input type="text" class="form-control" id="categoryType" name="categoryType" [(ngModel)]="category.type" required>
+  <div class="layout-container">
+    <div class="layout-page">
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="row mb-5">
+            <div class="col-md-8 offset-md-2">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Add a category with subcategories</h5>
+                  <form (ngSubmit)="createCategoryWithSubcategories()">
+                    <!-- Type de Catégorie -->
+                    <div class="mb-3">
+                      <label for="categoryType">Category type:</label>
+                      <input type="text" class="form-control" id="categoryType" name="categoryType" [(ngModel)]="category.type" required>
+                    </div>
+
+                    <!-- Sous-catégories -->
+                    <div class="mb-3">
+                      <label for="subCategoryInput">Add a subcategory:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="subCategoryInput" name="subCategoryInput" [(ngModel)]="newSubCategory" required>
+                       <button type="button" class="btn btn-primary" (click)="addSubCategory()">Add Subcategories</button>
                       </div>
-  
-                      <!-- Sous-catégories -->
-                      <div class="mb-3">
-                        <label for="subCategories">Sous-catégories (séparées par des virgules) :</label>
-                        <input type="text" class="form-control" id="subCategories" name="subCategories" [(ngModel)]="subCategoriesInput" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label>Subcategories added:</label>
+                      <ul class="list-group">
+                        <li *ngFor="let subCategory of subCategories" class="list-group-item">{{ subCategory }}</li>
+                      </ul>
+                    </div>
+
+                    <!-- Bouton Ajouter Catégorie -->
+                    <div class="row justify-content-center"> <!-- Utilisez justify-content-center pour centrer horizontalement -->
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">
+                          Add a category</button>
                       </div>
-  
-                      <!-- Bouton Ajouter Catégorie -->
-                      <div class="row justify-content-end">
-                        <div class="col-sm-10">
-                          <button type="submit" class="btn btn-primary">Ajouter Catégorie</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -37,4 +47,4 @@
       </div>
     </div>
   </div>
-  
+</div>

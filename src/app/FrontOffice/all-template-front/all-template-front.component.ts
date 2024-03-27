@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./all-template-front.component.css']
 })
 export class AllTemplateFrontComponent {
+  isSidebarVisible: boolean = false;
+
 
 }

@@ -1,0 +1,18 @@
+/* Styles pour la barre de recherche */
+.header-search form {
+    display: flex;
+    align-items: center;
+}
+
+
+
+#sidebar {
+    width: 250px;
+    background-color: #f3f3f3;
+    padding: 20px;
+    position: fixed;
+    top: 60px;
+    left: -250px; /* Caché par défaut */
+    bottom: 0;
+    transition: left 0.3s ease; /* Animation de transition */
+}

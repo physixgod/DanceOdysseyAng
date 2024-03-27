@@ -81,6 +81,8 @@ export class EditProductComponent implements OnInit {
     } else {
       console.error('Erreur: Le produit est undefined ou idProduct est undefined.');
     }
+    this.router.navigate(['/admin/list-product']);
+
   }
   
 

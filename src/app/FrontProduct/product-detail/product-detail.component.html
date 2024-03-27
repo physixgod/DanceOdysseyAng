@@ -1,0 +1,63 @@
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/bootstrap.min.css"/>
+
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick.css"/>
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick-theme.css"/>
+
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/nouislider.min.css"/>
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="/assets/FrontShop/css/font-awesome.min.css">
+
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/style.css"/>
+
+
+	
+
+	
+
+            	
+<!-- store products -->
+
+    <div class="col-md-4 col-xs-12" *ngFor="let product of products">
+      <div class="product">
+        <div class="product-img">
+          <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
+        </div>
+        <div class="product-body">
+          <p class="product-category">{{ product.categoriesProduct?.type }}</p>
+          <h3 class="product-name">{{ product.productName }}</h3>
+          <h4 class="product-price">{{ product.price }}</h4>
+          <div class="product-rating">
+            <!-- Display product rating here if available -->
+          </div>
+          <div class="product-btns">
+            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Add to wishlist</span></button>
+            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Add to compare</span></button>
+<!-- Dans votre fichier template où se trouve le bouton "Quick view" -->
+<!-- Dans votre fichier template où se trouve le bouton "Quick view" -->
+<a class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
+          </div>
+        </div>
+        <div class="add-to-cart">
+          <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+        </div>
+      </div>
+    </div>
+  <!-- /store products -->
+  
+
+		<!-- /SECTION -->
+        <!-- jQuery Plugins-->
+<script src="/assets/FrontShop/js/jquery.min.js"></script>
+<script src="/assets/FrontShop/js/bootstrap.min.js"></script>
+<script src="/assets/FrontShop/js/slick.min.js"></script>
+<script src="/assets/FrontShop/js/nouislider.min.js"></script>
+<script src="/assets/FrontShop/js/jquery.zoom.min.js"></script>
+<script src="/assets/FrontShop/js/main.js"></script>

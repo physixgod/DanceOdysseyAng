@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
+  today: string = ''; // Initialisation de la propriété today
+
   statusMessage: string | null = null;
   statusClass: string | null = null;
   categories: CategoriesProduct[] = [];
@@ -36,12 +38,17 @@ export class AddProductComponent implements OnInit {
       productsSS_C: [],
     },
     images: [],
+    today: '', // Ajout de la propriété today dans l'objet Product
+
   };
 
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCategories();
+    const now = new Date();
+    this.today = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+
   }
 
   loadCategories(): void {
@@ -97,7 +104,9 @@ export class AddProductComponent implements OnInit {
             (error) => {
               console.error('Error adding images:', error);
             }
+            
           );
+
         }
 
         // Ajoutez le produit à la catégorie et sous-catégorie ici
@@ -105,12 +114,13 @@ export class AddProductComponent implements OnInit {
 
         console.log('Navigating to list-product page...');
         // Navigate to the "list-product" route after adding the product
-       window.location.reload();
       },
       (error) => {
         console.error('Error adding product:', error);
       }
     );
+    this.router.navigate(['/admin/list-product']);
+
   }
   
 

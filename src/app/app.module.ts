@@ -21,10 +21,19 @@ import { CommonModule } from '@angular/common';
 import { ListProductComponent } from './BackOffice/list-product/list-product.component';
 import { EditProductComponent } from './BackOffice/edit-product/edit-product.component';
 import { CategorieProductComponent } from './BackOffice/categorie-product/categorie-product.component';
-import { ShowProductComponent } from './FrontOffice/show-product/show-product.component';
 import { ListArchivedComponent } from './BackOffice/list-archived/list-archived.component';
 import { ListCategoriesComponent } from './BackOffice/list-categories/list-categories.component';
-import { ListImgsComponent } from './BackOffice/list-imgs/list-imgs.component';
+import { ShowProductComponent } from './FrontProduct/show-product/show-product.component';
+import { HeaderComponent } from './FrontProduct/header/header.component';
+import { FooterComponent } from './FrontProduct/footer/footer.component';
+import { AlltemplateFrontProductComponent } from './FrontProduct/alltemplate-front-product/alltemplate-front-product.component';
+import { SideBarComponent } from './FrontProduct/side-bar/side-bar.component';
+
+import { ProductDetailComponent } from './FrontProduct/product-detail/product-detail.component';
+import { ViewProductComponent } from './FrontProduct/view-product/view-product.component';
+import { CartComponent } from './FrontProduct/cart/cart.component';
+import { CheckoutComponent } from './FrontProduct/checkout/checkout.component';
+
 
 @NgModule({
   declarations: [
@@ -44,10 +53,20 @@ import { ListImgsComponent } from './BackOffice/list-imgs/list-imgs.component';
     ListProductComponent,
     EditProductComponent,
     CategorieProductComponent,
-    ShowProductComponent,
+    
     ListArchivedComponent,
     ListCategoriesComponent,
-    ListImgsComponent,
+    ShowProductComponent,
+    HeaderComponent,
+    FooterComponent,
+    AlltemplateFrontProductComponent,
+    SideBarComponent,
+   
+    ProductDetailComponent,
+    ViewProductComponent,
+    CartComponent,
+    CheckoutComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -57,6 +76,7 @@ import { ListImgsComponent } from './BackOffice/list-imgs/list-imgs.component';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

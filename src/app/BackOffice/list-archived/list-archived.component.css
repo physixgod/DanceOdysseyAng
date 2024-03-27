@@ -1,0 +1,51 @@
+/* Ajoutez votre code CSS ici */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .layout-wrapper {
+    /* Ajoutez vos styles pour le wrapper ici */
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color:black;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color:black;
+  }
+
+  .table th {
+    background-color:  #fff;
+    color:black;
+  }
+  .product-cell {
+    cursor: pointer;
+  }
+  
+  .product-image {
+    max-width:55px; /* Ajustez la taille de l'image selon vos besoins */
+    height: auto;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+
+  }
+  
+  .btn:hover {
+
+  }
+  

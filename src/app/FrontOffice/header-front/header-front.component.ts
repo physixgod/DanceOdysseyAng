@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-front.component.css']
 })
 export class HeaderFrontComponent {
+  userId: number = 1;
+
 
 }

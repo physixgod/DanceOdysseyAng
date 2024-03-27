@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { CategoriesProduct } from 'src/app/models/categorie-product';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-categorie-product',
@@ -8,18 +11,19 @@ import { CategoriesProduct } from 'src/app/models/categorie-product';
   styleUrls: ['./categorie-product.component.css']
 })
 export class CategorieProductComponent {
-  category: CategoriesProduct = new CategoriesProduct(); // Pas besoin de passer le type comme paramètre
+  category: CategoriesProduct = new CategoriesProduct();
+  subCategories: string[] = []; // Définissez la propriété subCategories comme un tableau de chaînes
+  newSubCategory: string = ''; // Déclarez la propriété newSubCategory pour stocker la nouvelle sous-catégorie entrée par l'utilisateur
 
-  subCategoriesInput: string = ''; // Utilisez une chaîne pour les sous-catégories
-
-  constructor(private productService: ProductService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private router: Router
+  ) {}
 
   createCategoryWithSubcategories() {
-    // Séparez la chaîne de sous-catégories en un tableau
-    const subCategoriesArray = this.subCategoriesInput.split(',');
-
-    // Utilisez la méthode du service pour créer la catégorie avec sous-catégories
-    this.productService.createCategoryWithSubcategories(this.category.type, subCategoriesArray)
+    // Utilisez la méthode du service pour créer la catégorie avec les sous-catégories
+    this.productService.createCategoryWithSubcategories(this.category.type, this.subCategories)
       .subscribe(
         data => {
           console.log('Catégorie ajoutée avec succès :', data);
@@ -30,5 +34,14 @@ export class CategorieProductComponent {
           // Gérez l'erreur selon vos besoins
         }
       );
+      this.router.navigate(['/admin/list_Categories']);
+
+  }
+
+  addSubCategory() {
+    if (this.newSubCategory.trim() !== '') {
+      this.subCategories.push(this.newSubCategory); // Ajoutez la nouvelle sous-catégorie à la liste
+      this.newSubCategory = ''; // Réinitialisez le champ de saisie pour la nouvelle sous-catégorie
+    }
   }
 }

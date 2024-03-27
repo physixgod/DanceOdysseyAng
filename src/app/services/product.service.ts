@@ -31,7 +31,19 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
+  // Méthode pour récupérer les produits par catégorie parent
+  getProductsByParentCategory(parentId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseURL}/searchProduct/byCategory/${parentId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
 
+  // Méthode pour récupérer les produits par sous-catégorie
+  getProductsBySubCategory(subCategoryId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseURL}/searchProduct/bySubcategory/${subCategoryId}`).pipe(
+      catchError(this.handleError)
+    );
+  }
   createCategoryWithSubcategories(categoryName: string, subcategoryNames: string[]): Observable<CategoriesProduct> {
     const url = `${this.baseURL}/createCategoryWithSubcategories`;
     const request = { categoryName, subcategoryNames };
@@ -99,7 +111,12 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-  
+  addSubcategoriesToParent(parentId: number, subcategoryNames: string[]): Observable<string> {
+    const url = `${this.baseURL}/${parentId}/addSubcategories`;
+    return this.http.post<string>(url, subcategoryNames).pipe(
+      catchError(this.handleError)
+    );
+  }
   getSubCategories(parentId: number): Observable<CategoriesProduct[]> {
     const url = `${this.baseURL}/subCategories/${parentId}`;
   
@@ -107,11 +124,20 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
+  
 
 // Dans votre service Angular (product.service.ts)
 
 archiveProduct(productId: number): Observable<string> {
   const url = `${this.baseURL}/archiveProduct/${productId}`;
+
+  // Utilisez le verbe HTTP PUT pour appeler l'API d'archivage
+  return this.http.put<string>(url, {}).pipe(
+    catchError(this.handleError)
+  );
+}
+UnarchiveProduct(productId: number): Observable<string> {
+  const url = `${this.baseURL}/unarchiveProduct/${productId}`;
 
   // Utilisez le verbe HTTP PUT pour appeler l'API d'archivage
   return this.http.put<string>(url, {}).pipe(
