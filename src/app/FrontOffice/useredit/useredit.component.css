@@ -1,0 +1,36 @@
+.content-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8a2be2;
+  }
+  
+  .card {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #6a1d9e;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 15px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #6a1d9e;
+    border-color: #6a1d9e;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #8a2be2;
+    border-color: #8a2be2;
+  }
+  

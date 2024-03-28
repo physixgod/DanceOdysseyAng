@@ -1,0 +1,27 @@
+
+<div class="content-wrapper">
+  <div class="container-xl flex-grow-1 container-p-y d-flex justify-content-center align-items-center" style="background-color: #007bff;">
+    <div class="card">
+      <h5 class="card-header">User Information</h5>
+      <div class="card-body">
+        <div>
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" id="username" [(ngModel)]="username" class="form-control">
+        </div>
+        <div>
+          <label for="lastName" class="form-label">Last Name:</label>
+          <input type="text" id="lastName" [(ngModel)]="lastName" class="form-control">
+        </div>
+        <div>
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" id="email" [(ngModel)]="email" class="form-control">
+        </div>
+        <div>
+          <label for="confpassword" class="form-label">Confirm Password:</label>
+          <input type="password" id="confpassword" [(ngModel)]="confpassword" class="form-control">
+        </div>
+        <button (click)="addUser()" class="btn btn-primary mt-3">Update User Info</button>
+      </div>
+    </div>
+  </div>
+</div>

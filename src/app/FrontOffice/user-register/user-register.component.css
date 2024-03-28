@@ -1,0 +1,142 @@
+
+.hero.overlay {
+  background-image: url('../../../assets/images/dancepic.webp');
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+}
+
+.user-registration-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8); /* Adding a semi-transparent white background to the form container */
+}
+
+.user-registration-container h2 {
+  margin-bottom: 20px;
+}
+
+.user-registration-form .form-group {
+  margin-bottom: 20px; /* Increased margin-bottom for better spacing */
+}
+
+.user-registration-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.user-registration-form input[type="text"],
+.user-registration-form input[type="email"],
+.user-registration-form input[type="password"],
+.user-registration-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Increased border-radius for smoother edges */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.user-registration-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.user-registration-form button:hover {
+  background-color: #45a049;
+}
+
+.password-strength {
+  margin-top: 10px;
+}
+
+.strength-bar-container {
+  width: 100%;
+  height: 10px;
+  background-color: #eee; /* Light gray background for the bar container */
+  border-radius: 5px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.strength-bar {
+  height: 100%;
+  background-color: #f2f6f1; /* Green color for the strength bar */
+  transition: width 0.3s ease; /* Smooth transition animation */
+}
+
+.weak-password  {
+  background-color: #ff6347; /* Red for weak password */
+}
+
+.moderate-password  {
+  background-color: #ffd700; /* Yellow for moderate password */
+}
+
+.strong-password  {
+  background-color: #41de16; /* Blue for strong password */
+}
+
+.error {
+  border-color: red; /* Change border color to red when there is an error */
+}
+
+.error-message {
+  color: red; /* Change text color to red */
+  margin-top: 5px; /* Add some space between input and error message */
+}
+
+/* Add animation for pop effect */
+.form-group.error {
+  animation: pop 0.3s ease forwards;
+}
+
+@keyframes pop {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+/* Add custom styles for the select dropdown */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  padding-right: 30px; /* Adjust padding to accommodate the arrow icon */
+  -webkit-appearance: none; /* Remove default arrow for Chrome */
+  -moz-appearance: none; /* Remove default arrow for Firefox */
+  appearance: none; /* Remove default arrow */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight border color on focus */
+}
+
+/* Style the arrow icon */
+.select-wrapper::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #999; /* Adjust arrow color */
+}
