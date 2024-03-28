@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesProduct } from 'src/app/models/categorie-product';
-import { ProductService } from 'src/app/services/product.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -13,22 +13,22 @@ export class ListCategoriesComponent implements OnInit {
   errorMessage: string = '';
   
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private categoriesService: CategoriesService)
+
+     { }
 
   ngOnInit(): void {
     this.loadParentCategories();
   }
 
   loadParentCategories(): void {
-    this.productService.getParentCategories().subscribe(
+    this.categoriesService.getParentCategories().subscribe(
       (categories: CategoriesProduct[]) => {
         this.parentCategories = categories.filter(category => category.idCategories !== undefined);
         this.loadSubCategoriesForParents();
       },
-      (error) => {
-        this.errorMessage = 'Une erreur s\'est produite lors du chargement des catégories parentes.';
-        console.error('Error loading parent categories:', error);
-      }
+      
     );
   }
 
@@ -36,7 +36,7 @@ export class ListCategoriesComponent implements OnInit {
     this.parentCategories.forEach(parentCategory => {
       const parentId = parentCategory.idCategories;
       if (parentId !== undefined) {
-        this.productService.getSubCategories(parentId).subscribe(
+        this.categoriesService.getSubCategories(parentId).subscribe(
           (subCategories: CategoriesProduct[]) => {
             if (subCategories && subCategories.length > 0) {
               this.subCategoriesMap.set(parentId, subCategories);
@@ -54,7 +54,7 @@ export class ListCategoriesComponent implements OnInit {
   addSubcategory(parentCategoryId: number): void {
     const newSubcategoryName = prompt('Entrez le nom de la nouvelle sous-catégorie:');
     if (newSubcategoryName) {
-      this.productService.addSubcategoriesToParent(parentCategoryId, [newSubcategoryName]).subscribe(
+      this.categoriesService.addSubcategoriesToParent(parentCategoryId, [newSubcategoryName]).subscribe(
         () => {
           this.refreshSubCategories(parentCategoryId);
         },
@@ -67,7 +67,7 @@ export class ListCategoriesComponent implements OnInit {
   }
 
   refreshSubCategories(parentCategoryId: number): void {
-    this.productService.getSubCategories(parentCategoryId).subscribe(
+    this.categoriesService.getSubCategories(parentCategoryId).subscribe(
       (subCategories: CategoriesProduct[]) => {
         if (subCategories && subCategories.length > 0) {
           this.subCategoriesMap.set(parentCategoryId, subCategories);

@@ -17,7 +17,7 @@ export class ViewProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute // Inject ActivatedRoute here
+    private route: ActivatedRoute 
   ) {}
 
   ngOnInit(): void {
@@ -32,12 +32,10 @@ export class ViewProductComponent implements OnInit {
       (data: Product[]) => {
         if (data && data.length > 0) {
           this.product = { ...data[0] };
-          // Sélectionnez la première image comme image principale par défaut
           if (this.product.images && this.product.images.length > 0) {
             this.selectedImage = this.product.images[0];
           }
         } else {
-          // Gérer le cas où le produit n'est pas trouvé
         }
       },
       (error) => {
@@ -49,7 +47,6 @@ export class ViewProductComponent implements OnInit {
     this.selectedImage = image;
   }
   getDefaultImage(): string {
-    // Mettez ici l'URL de votre image par défaut
     return 'URL_de_votre_image_par_défaut';
   }
 }

@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { CategoriesProduct } from 'src/app/models/categorie-product';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 
 @Component({
@@ -18,12 +19,14 @@ export class CategorieProductComponent {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private categoriesService: CategoriesService, // Injectez le service ici
+
     private router: Router
   ) {}
 
   createCategoryWithSubcategories() {
     // Utilisez la méthode du service pour créer la catégorie avec les sous-catégories
-    this.productService.createCategoryWithSubcategories(this.category.type, this.subCategories)
+    this.categoriesService.createCategoryWithSubcategories(this.category.type, this.subCategories)
       .subscribe(
         data => {
           console.log('Catégorie ajoutée avec succès :', data);

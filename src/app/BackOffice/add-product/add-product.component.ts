@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, CategoriesProduct } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-add-product',
@@ -42,7 +43,11 @@ export class AddProductComponent implements OnInit {
 
   };
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private categoriesService: CategoriesService, // Injectez le service ici
+
+     private router: Router) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -52,14 +57,14 @@ export class AddProductComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.productService. getParentCategories().subscribe((categories: CategoriesProduct[]) => {
+    this.categoriesService. getParentCategories().subscribe((categories: CategoriesProduct[]) => {
       this.categories = categories;
     });
   }
 
   getSubCategories(): void {
     if (this.categoryId) {
-      this.productService.getSubCategories(this.categoryId).subscribe((subCategories: CategoriesProduct[]) => {
+      this.categoriesService.getSubCategories(this.categoryId).subscribe((subCategories: CategoriesProduct[]) => {
         this.subCategories = subCategories;
       });
     }

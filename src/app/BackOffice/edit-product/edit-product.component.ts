@@ -35,7 +35,6 @@ export class EditProductComponent implements OnInit {
         if (data && data.length > 0) {
           this.product = { ...data[0] };
         } else {
-          // Gérer le cas où le produit n'est pas trouvé
         }
       },
       (error) => {

@@ -20,6 +20,19 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
+  updateProductById(productId: number, updatedProduct: Product): Observable<Product> {
+    const url = `${this.baseURL}/${productId}`;
+  
+    return this.http.put<Product>(url, updatedProduct)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.baseURL}/updateProducts`, product).pipe(
+      catchError(this.handleError)
+    );
+  }
   getProductsById(id: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseURL}/${id}`).pipe(
       catchError(this.handleError)
@@ -31,27 +44,16 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-  // Méthode pour récupérer les produits par catégorie parent
   getProductsByParentCategory(parentId: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseURL}/searchProduct/byCategory/${parentId}`).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Méthode pour récupérer les produits par sous-catégorie
   getProductsBySubCategory(subCategoryId: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseURL}/searchProduct/bySubcategory/${subCategoryId}`).pipe(
       catchError(this.handleError)
     );
-  }
-  createCategoryWithSubcategories(categoryName: string, subcategoryNames: string[]): Observable<CategoriesProduct> {
-    const url = `${this.baseURL}/createCategoryWithSubcategories`;
-    const request = { categoryName, subcategoryNames };
-
-    return this.http.post<CategoriesProduct>(url, request)
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
   getArchivedProducts(): Observable<Product[]> {
@@ -62,11 +64,7 @@ export class ProductService {
         catchError(this.handleError)
       );
   }
-  updateProduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.baseURL}/updateProducts`, product).pipe(
-      catchError(this.handleError)
-    );
-  }
+
   getProductByRefProduct(refProduct: number): Observable<Product> {
     const url = `${this.baseURL}/byRefProduct/${refProduct}`;
 
@@ -96,42 +94,14 @@ export class ProductService {
     );
   }
   
-  
-  getCategories(): Observable<CategoriesProduct[]> {
-    const url = `${this.baseURL}/All-Categorie`;
-  
-    return this.http.get<CategoriesProduct[]>(url).pipe(
-      catchError(this.handleError)
-    );
-  }
-  getParentCategories(): Observable<CategoriesProduct[]> {
-    const url = `${this.baseURL}/ParentCategories`;
-  
-    return this.http.get<CategoriesProduct[]>(url).pipe(
-      catchError(this.handleError)
-    );
-  }
-  addSubcategoriesToParent(parentId: number, subcategoryNames: string[]): Observable<string> {
-    const url = `${this.baseURL}/${parentId}/addSubcategories`;
-    return this.http.post<string>(url, subcategoryNames).pipe(
-      catchError(this.handleError)
-    );
-  }
-  getSubCategories(parentId: number): Observable<CategoriesProduct[]> {
-    const url = `${this.baseURL}/subCategories/${parentId}`;
-  
-    return this.http.get<CategoriesProduct[]>(url).pipe(
-      catchError(this.handleError)
-    );
-  }
-  
 
-// Dans votre service Angular (product.service.ts)
+
+
+
 
 archiveProduct(productId: number): Observable<string> {
   const url = `${this.baseURL}/archiveProduct/${productId}`;
 
-  // Utilisez le verbe HTTP PUT pour appeler l'API d'archivage
   return this.http.put<string>(url, {}).pipe(
     catchError(this.handleError)
   );
@@ -139,7 +109,6 @@ archiveProduct(productId: number): Observable<string> {
 UnarchiveProduct(productId: number): Observable<string> {
   const url = `${this.baseURL}/unarchiveProduct/${productId}`;
 
-  // Utilisez le verbe HTTP PUT pour appeler l'API d'archivage
   return this.http.put<string>(url, {}).pipe(
     catchError(this.handleError)
   );
@@ -164,21 +133,6 @@ getImagesForProduct(productId: number): Observable<Image[]> {
     catchError(this.handleError)
   );
 }
-
-private handleError(error: any): Observable<never> {
-  console.error('An error occurred:', error);
-
-  if (error instanceof HttpErrorResponse) {
-    console.error(`Status: ${error.status}, ${error.statusText}`);
-    console.error('Response body:', error.error);
-
-    const errorMessage = error.error && error.error.error ? error.error.error : 'Something went wrong';
-
-    return throwError(errorMessage);
-  }
-
-  return throwError('Something went wrong');
-}
 searchProductsByName(name: string): Observable<Product[]> {
   const url = `${this.baseURL}/search/${name}`;
 
@@ -197,12 +151,20 @@ updateImageUrl(productId: number, imageId: number, updatedImageFile: File): Obse
     );
 }
 
-updateProductById(productId: number, updatedProduct: Product): Observable<Product> {
-  const url = `${this.baseURL}/${productId}`;
+private handleError(error: any): Observable<never> {
+  console.error('An error occurred:', error);
 
-  return this.http.put<Product>(url, updatedProduct)
-    .pipe(
-      catchError(this.handleError)
-    );
+  if (error instanceof HttpErrorResponse) {
+    console.error(`Status: ${error.status}, ${error.statusText}`);
+    console.error('Response body:', error.error);
+
+    const errorMessage = error.error && error.error.error ? error.error.error : 'Something went wrong';
+
+    return throwError(errorMessage);
+  }
+
+  return throwError('Something went wrong');
 }
+
+
 }

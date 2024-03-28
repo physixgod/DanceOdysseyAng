@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product, Image } from 'src/app/models/product';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -27,11 +26,11 @@ export class ListArchivedComponent implements OnInit {
   loadArchivedProducts(): void {
     this.productService.getArchivedProducts().subscribe(
       (products) => {
-        this.products = products; // Assign the received products to the component property
+        this.products = products; 
       },
       (error) => {
         console.error('Error loading archived products:', error);
-        // Handle error, show a message to the user, etc.
+       
       }
     );
   }
@@ -48,12 +47,12 @@ export class ListArchivedComponent implements OnInit {
     this.productService.UnarchiveProduct(productId).subscribe(
       (response) => {
         console.log('Product unarchived successfully:', response);
-        // Mettre à jour la liste des produits après désarchivage
+      
         this.loadArchivedProducts();
       },
       error => {
         console.error('Error unarchiving product:', error);
-        // Handle error, show a message to the user, etc.
+  
       }
     );
   }

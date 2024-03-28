@@ -35,23 +35,22 @@
 							<div class="header-search">
 								<form>
 									<select class="input-select" (change)="onCategoryChange($event)">
-									  <option value="0">All categories</option>
-									  <!-- Boucle pour afficher les catégories parentes et leurs sous-catégories -->
-									  <ng-container *ngFor="let parentCategory of parentCategories">
-										<ng-container *ngIf="parentCategory.idCategories !== undefined">
-										  <!-- Option pour la catégorie parente -->
-										  <option [value]="parentCategory.idCategories">{{ parentCategory.type }}</option>
-										  <!-- Boucle imbriquée pour afficher les sous-catégories -->
-										  <ng-container *ngFor="let subCategory of subCategoriesMap.get(parentCategory.idCategories)">
-											<option [value]="subCategory.idCategories">- {{ subCategory.type }}</option>
-										  </ng-container>
+										<option value="0">All categories</option>
+										<!-- Boucle pour afficher les catégories parentes et leurs sous-catégories -->
+										<ng-container *ngFor="let parentCategory of parentCategories">
+											<ng-container *ngIf="parentCategory.idCategories !== undefined">
+												<!-- Option pour la catégorie parente -->
+												<option [value]="parentCategory.idCategories">{{ parentCategory.type }}</option>
+												<!-- Boucle imbriquée pour afficher les sous-catégories -->
+												<ng-container *ngFor="let subCategory of subCategoriesMap.get(parentCategory.idCategories)">
+													<option [value]="subCategory.idCategories">- {{ subCategory.type }}</option>
+												</ng-container>
+											</ng-container>
 										</ng-container>
-									  </ng-container>
 									</select>
-									<input class="input" placeholder="Search DanceOdyssey" [(ngModel)]="searchName">
-									<button class="search-btn" type="button" (click)="searchProducts()">Search</button>
-								  </form>
-								  
+									<input class="input" placeholder="Search DanceOdyssey">
+									<button class="search-btn">Search</button>
+								</form>
 							</div>
 						</div>
 						

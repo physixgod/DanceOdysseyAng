@@ -22,7 +22,6 @@ export class ListProductComponent implements OnInit {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe(products => {
-      // Filtrer les produits archivés
       this.products = products.filter(product => !product.archived);
     });
   }
@@ -48,7 +47,6 @@ export class ListProductComponent implements OnInit {
     this.productService.archiveProduct(id).subscribe(
       (response: string) => {
         console.log('Product archived successfully:', response);
-        // Mettre à jour le statut de l'archivage dans la liste des produits
         const archivedProduct = this.products.find(product => product.idProduct === id);
         if (archivedProduct) {
           archivedProduct.archived = true;
@@ -64,10 +62,8 @@ export class ListProductComponent implements OnInit {
     console.log('Search Name:', this.searchName);
 
     if (this.searchName.trim() === '') {
-      // If the search input is empty, fetch all products
       this.loadProducts();
     } else {
-      // If there's a search input, search products by name
       this.productService.searchProductsByName(this.searchName).subscribe(
         (data: Product[]) => {
           this.products = data;

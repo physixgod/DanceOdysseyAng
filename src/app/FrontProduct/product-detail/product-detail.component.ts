@@ -24,7 +24,6 @@ export class ProductDetailComponent {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe(products => {
-      // Filtrer les produits archivés
       this.products = products.filter(product => !product.archived);
     });
   }
